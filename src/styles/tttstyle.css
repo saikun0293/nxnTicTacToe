@@ -1,0 +1,14 @@
+.inner-container {
+  background-color: white;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.outer-container {
+  background-color: grey;
+  padding: 12px 10px 10px 12px;
+  margin: 0 auto;
+}
