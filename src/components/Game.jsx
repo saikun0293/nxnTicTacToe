@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "./Navbar";
 import TicTacToe from "./TicTacToe";
+import "../styles/Game.css";
 
 class GamePage extends Component {
   state = {

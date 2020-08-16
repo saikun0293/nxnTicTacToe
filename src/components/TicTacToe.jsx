@@ -4,8 +4,8 @@ import "../styles/tttstyle.css";
 
 class TicTacToe extends Component {
   state = {
-    dimensions: 3,
-    width: 600,
+    dimensions: 5,
+    width: 500,
     coord: [],
     turn: "X",
     values: [],
@@ -39,7 +39,6 @@ class TicTacToe extends Component {
   handleWinner = () => {
     let { values, dimensions } = this.state;
     let count = 0;
-    console.log(values);
     let diag1 = [0, 0];
     let diag2 = [0, 0];
     let win = null;
@@ -55,9 +54,6 @@ class TicTacToe extends Component {
           count++;
         }
       }
-
-      console.log(row[0] + " " + col[0]);
-      console.log(row[1] + " " + col[1]);
 
       if (row[0] === dimensions || col[0] === dimensions) {
         win = "X";

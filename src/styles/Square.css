@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap");
+
+.square {
+  background-color: #222831;
+  color: white;
+  display: flex;
+  font-family: "Montserrat";
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+}
+
+.X {
+  color: #7effdb;
+}
+
+.O {
+  color: #b693fe;
+}

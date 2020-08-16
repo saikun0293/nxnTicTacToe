@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserInput from "./UserInput";
+import "../styles/Authentication.css";
 
 class AuthenticationPage extends Component {
   state = {};
