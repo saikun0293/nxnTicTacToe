@@ -29,11 +29,21 @@ class GamePage extends Component {
       <div className="gameBody">
         <Navbar />
         {/* Match score here */}
-        <TicTacToe onWinner={this.handleWinner} />
-        <p>{`Round ${this.state.round}`}</p>
-        {/* Play again and End game only enabled after the match */}
-        <button onClick={() => this.handlePlay()}>Play Again</button>
-        <button onClick={() => this.handleEndGame()}>End Game</button>
+        <div className="layout">
+          <TicTacToe onWinner={this.handleWinner} />
+          <div className="status">
+            <p>{`Round ${this.state.round}`}</p>
+            {/* Play again and End game only enabled after the match */}
+            <div>
+              <button className="btn" onClick={() => this.handlePlay()}>
+                Play Again
+              </button>
+              <button className="btn" onClick={() => this.handleEndGame()}>
+                End Game
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

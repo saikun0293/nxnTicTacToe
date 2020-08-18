@@ -4,8 +4,8 @@ import "../styles/tttstyle.css";
 
 class TicTacToe extends Component {
   state = {
-    dimensions: 5,
-    width: 500,
+    dimensions: 10,
+    width: 450,
     coord: [],
     turn: "X",
     values: [],
