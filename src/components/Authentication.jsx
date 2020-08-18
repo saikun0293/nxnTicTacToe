@@ -7,19 +7,23 @@ class AuthenticationPage extends Component {
 
   handleVerification = (verified) => {
     if (verified) {
-      console.log("Verified!");
+      console.log("Authentication successful!");
     } else {
-      console.log("Not verified!");
+      window.alert(
+        "ERROR 404: Player not found, either check in other team or register!"
+      );
     }
   };
+
+  handleRegister;
 
   render() {
     return (
       <div className="authBody">
         {/* Player 1 */}
-        <UserInput onVerification={this.handleVerification} />
+        <UserInput team="redteam" onVerification={this.handleVerification} />
         {/* Player 2 */}
-        <UserInput onVerification={this.handleVerification} />
+        <UserInput team="blueteam" onVerification={this.handleVerification} />
       </div>
     );
   }

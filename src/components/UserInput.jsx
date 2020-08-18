@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+import apiKey from "./APIKEY";
+import Axios from "axios";
+
+const api = Axios.create({
+  baseURL: "https://crudcrud.com/api/" + apiKey,
+});
 
 class UserInput extends Component {
   state = {
@@ -16,12 +22,19 @@ class UserInput extends Component {
 
   handleSubmit = (event) => {
     const { username, password } = this.state;
+    const team = this.props.team;
 
-    if (username === "sai" && password === "123") {
-      this.setState({ verified: true }, () =>
-        this.props.onVerification(this.state.verified)
-      );
-    }
+    api.get("/" + team).then((res) => {
+      console.log(res);
+      const players = res.data;
+      players.forEach((player) => {
+        if (player.username === username && player.password === password) {
+          this.setState({ verified: true }, () => {
+            this.props.onVerification(this.state.verified);
+          });
+        }
+      });
+    });
     event.preventDefault();
   };
 
