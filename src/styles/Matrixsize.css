@@ -1,0 +1,28 @@
+.matrix {
+  width: 350px;
+  list-style: none;
+  background: linear-gradient(to bottom, #f8b7cd 0%, #c8e7f5 100%);
+  border-radius: 20px;
+  border: 2px solid black;
+  height: 120px;
+  padding: 20px 15px;
+  margin: 1em;
+}
+.submit {
+  background-color: black;
+  color: white;
+  font-family: "Montserrat" !important;
+  font-size: 15px;
+  border-radius: 20px;
+  border-color: black;
+  outline: none;
+  outline-style: none !important;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin-left: 6em;
+}
+.flex-row {
+  display: flex;
+  justify-content: center;
+}
