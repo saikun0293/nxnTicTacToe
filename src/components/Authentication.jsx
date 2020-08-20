@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserInput from "./UserInput";
+import Matrixsize from "./Matrixsize";
 import "../styles/Authentication.css";
 
 class AuthenticationPage extends Component {
@@ -20,11 +21,11 @@ class AuthenticationPage extends Component {
   render() {
     return (
       <div className="authBody">
-        {/* Player 1 */}
-        <UserInput team="redteam" onVerification={this.handleVerification} />
-        {/* Player 2 */}
-        <UserInput team="blueteam" onVerification={this.handleVerification} />
+        <Matrixsize />
+        <UserInput onVerification={this.handleVerification} />
       </div>
+
+      // </div>
     );
   }
 }
