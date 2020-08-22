@@ -23,6 +23,7 @@ class AuthenticationPage extends Component {
       <div className="authBody">
         <Matrixsize />
         <UserInput onVerification={this.handleVerification} />
+        <UserInput onVerification={this.handleVerification} />
       </div>
 
       // </div>
