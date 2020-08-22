@@ -15,19 +15,19 @@ class Scoreboard extends Component {
         <table className="tableboard" align="center">
           <tbody>
             <tr className="rowline" style={{ borderWidth: "5px" }}>
-              <th className="col ">
+              <th className="col1">
                 <img src={goldenglobe} alt="React Logo" width="40vw"></img>
               </th>
               <td className="col">Yash Prasad</td>
             </tr>
             <tr className="rowline">
-              <th className="col">
+              <th className="col2">
                 <img src={silvercup} alt="React Logo" width="40vw"></img>
               </th>
               <td className="col">Vaibhav Prasad</td>
             </tr>
             <tr className="rowline">
-              <th className="col">
+              <th className="col3">
                 <img src={bronzecup} alt="React Logo" width="40vw"></img>
               </th>
               <td className="col">Nihar Patel</td>
