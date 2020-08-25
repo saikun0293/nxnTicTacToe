@@ -45,10 +45,21 @@ class UserInput extends Component {
   render() {
     return (
       <div>
-        <div className="flex-row1">
-          <FontAwesomeIcon className="fajoomla" icon={faJoomla} color="blue" />
-          <FontAwesomeIcon className="faslack" icon={faSlack} color="red" />
-        </div>
+        <section>
+          <div className="flex-row1">
+            <FontAwesomeIcon
+              className="fajoomla"
+              icon={faJoomla}
+              color="white"
+            />
+            <FontAwesomeIcon className="faslack" icon={faSlack} color="white" />
+          </div>
+
+          <div className="wave wave1"></div>
+          <div className="wave wave2"></div>
+          <div className="wave wave3"></div>
+          <div className="wave wave4"></div>
+        </section>
         <div className="flex-row">
           <div className="userinput-field">
             <form className="blueteam-ui" onSubmit={this.handleSubmit}>

@@ -1,6 +1,6 @@
 .authBody {
-  background: linear-gradient(90deg, #00e0ff 0%, #ff6464 100%);
-  height: 150vh;
+  height: 120vh;
+  background-color: white;
 }
 
 .svg-inline--fa.fa-w-14 {
@@ -8,9 +8,10 @@
   height: 20vh;
 }
 .fajoomla {
-  margin-right: 14em;
+  margin-right: 20em;
 }
 .flex-row1 {
+  margin-top: 2em;
   display: flex;
   justify-content: center;
 }
