@@ -6,31 +6,28 @@ class Matrixsize extends Component {
   //   super(props);
   // }
   state = { matrixSize: "" };
-
   handleUpdate = (e) => {
     const matrixSize = e.target.value;
     this.setState({ matrixSize });
   };
-
   handleSubmit = () => {
     this.props.updateMatrixSize(this.state.matrixSize);
     this.props.handleToggle();
   };
-
   render() {
     return (
       <div className="flex-row">
         <form className="matrix">
-          <label>Matrixsize</label>
           <input
             id="matrixsize"
             type="number"
             name="MatrixSize"
+            placeholder="Matrixsize"
             onChange={this.handleUpdate}
           />
-          <button className="submit" onClick={(e) => this.handleSubmit(e)}>
+          {/* <button className="submit" onClick={(e) => this.handleSubmit(e)}>
             SUBMIT
-          </button>
+          </button> */}
         </form>
       </div>
     );

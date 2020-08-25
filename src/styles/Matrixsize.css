@@ -1,14 +1,17 @@
 .matrix {
   width: 350px;
   list-style: none;
-  background: linear-gradient(to bottom, #f8b7cd 0%, #c8e7f5 100%);
+  background: linear-gradient(to right, #5ce3f5 50%, #ff6464 50%);
   border-radius: 20px;
   border: 2px solid black;
-  height: 120px;
-  padding: 20px 15px;
-  margin: 1em;
+  height: 40px;
+  padding: 10px 15px;
+  margin-top: 7em;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
 }
-.submit {
+/* .submit {
   background-color: black;
   color: white;
   font-family: "Montserrat" !important;
@@ -21,8 +24,18 @@
   display: flex;
   justify-content: center;
   margin-left: 6em;
-}
+} */
 .flex-row {
   display: flex;
   justify-content: center;
+}
+#matrixsize {
+  border-radius: 20px;
+  border: none;
+  width: 10vw;
+  height: 30px;
+  margin: 10px 0;
+  outline: none;
+  padding: 0 20px;
+  font-family: "Montserrat";
 }

@@ -19,12 +19,13 @@ class AuthenticationPage extends Component {
   render() {
     return (
       <div className="authBody">
+
+       
+        <UserInput onVerification={this.handleVerification} />
         <Matrixsize />
-        <UserInput team="blue" onVerification={this.handleVerification} />
-        <UserInput team="red" onVerification={this.handleVerification} />
+
       </div>
 
-      // </div>
     );
   }
 }
