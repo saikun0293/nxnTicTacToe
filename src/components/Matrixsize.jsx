@@ -2,18 +2,21 @@ import React, { Component } from "react";
 import "../styles/Matrixsize.css";
 
 class Matrixsize extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   state = { matrixSize: "" };
+
   handleUpdate = (e) => {
     const matrixSize = e.target.value;
     this.setState({ matrixSize });
   };
+
   handleSubmit = () => {
     this.props.updateMatrixSize(this.state.matrixSize);
     this.props.handleToggle();
   };
+
   render() {
     return (
       <div className="flex-row">
