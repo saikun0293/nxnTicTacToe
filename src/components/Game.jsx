@@ -7,12 +7,15 @@ import { faSlack } from "../../node_modules/@fortawesome/free-brands-svg-icons";
 import { faJoomla } from "../../node_modules/@fortawesome/free-brands-svg-icons";
 
 class GamePage extends Component {
-  constructor(props) {
-    super();
-  }
   state = {
+    dimensions: 3,
     round: 1,
   };
+
+  constructor(props) {
+    super(props);
+    this.state.dimensions = this.props.matrixSize;
+  }
 
   handlePlay = () => {
     console.log("Restarting the match");

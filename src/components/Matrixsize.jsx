@@ -2,18 +2,18 @@ import React, { Component } from "react";
 import "../styles/Matrixsize.css";
 
 class Matrixsize extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   state = { matrixSize: "" };
-  // handleUpdate = (e) => {
-  //   const matrixSize = e.target.value;
-  //   this.setState({ matrixSize });
-  // };
-  // handleSubmit = () => {
-  //   this.props.updateMatrixSize(this.state.matrixSize);
-  //   this.props.handleToggle();
-  // };
+  handleUpdate = (e) => {
+    const matrixSize = e.target.value;
+    this.setState({ matrixSize });
+  };
+  handleSubmit = () => {
+    this.props.updateMatrixSize(this.state.matrixSize);
+    this.props.handleToggle();
+  };
   render() {
     return (
       <div className="flex-row">
@@ -23,11 +23,12 @@ class Matrixsize extends Component {
             type="number"
             name="MatrixSize"
             placeholder="Matrixsize"
+            className="matrix-input"
             onChange={this.handleUpdate}
           />
-          {/* <button className="submit" onClick={(e) => this.handleSubmit(e)}>
-            SUBMIT
-          </button> */}
+          <button className="submit" onClick={(e) => this.handleSubmit(e)}>
+            Start Game
+          </button>
         </form>
       </div>
     );

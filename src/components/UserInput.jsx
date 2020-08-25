@@ -29,17 +29,23 @@ class UserInput extends Component {
     const team = this.props.team;
 
     api.get("/" + team).then((res) => {
+      let found = false;
       const players = res.data;
       players.forEach((player) => {
         if (
           player.data.username === username &&
           player.data.password === password
         ) {
-          this.setState({ verified: true }, () => {
-            this.props.onVerification(this.state.verified);
-          });
+          found = true;
         }
       });
+      if (found === true) {
+        this.setState({ verified: true }, () =>
+          this.props.onVerification(this.state.verified)
+        );
+      } else {
+        this.props.onVerification(this.state.verified);
+      }
     });
     event.preventDefault();
   };

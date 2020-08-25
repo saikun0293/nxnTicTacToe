@@ -10,9 +10,7 @@ class AuthenticationPage extends Component {
     if (verified) {
       console.log("Authentication successful!");
     } else {
-      window.alert(
-        "ERROR 404: Player not found, either check in other team or register!"
-      );
+      console.log("Authentication failed!");
     }
   };
 
