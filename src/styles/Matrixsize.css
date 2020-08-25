@@ -10,7 +10,9 @@
   margin-bottom: 0;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
+
 /* .submit {
   background-color: black;
   color: white;
@@ -25,6 +27,17 @@
   justify-content: center;
   margin-left: 6em;
 } */
+.submit {
+  background-color: black;
+  font-family: "Montserrat";
+  font-size: 15px;
+  border-radius: 20px;
+  outline: none;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+}
+
 .flex-row {
   display: flex;
   justify-content: center;
@@ -32,7 +45,7 @@
 #matrixsize {
   border-radius: 20px;
   border: none;
-  width: 10vw;
+  width: 130px;
   height: 30px;
   margin: 10px 0;
   outline: none;

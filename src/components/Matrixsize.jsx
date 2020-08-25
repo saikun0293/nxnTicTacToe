@@ -23,11 +23,12 @@ class Matrixsize extends Component {
             type="number"
             name="MatrixSize"
             placeholder="Matrixsize"
+            className="matrix-input"
             onChange={this.handleUpdate}
           />
-          {/* <button className="submit" onClick={(e) => this.handleSubmit(e)}>
-            SUBMIT
-          </button> */}
+          <button className="submit" onClick={(e) => this.handleSubmit(e)}>
+            Start Game
+          </button>
         </form>
       </div>
     );
