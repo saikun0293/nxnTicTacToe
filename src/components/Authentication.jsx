@@ -22,8 +22,8 @@ class AuthenticationPage extends Component {
     return (
       <div className="authBody">
         <Matrixsize />
-        <UserInput onVerification={this.handleVerification} />
-        <UserInput onVerification={this.handleVerification} />
+        <UserInput team="blue" onVerification={this.handleVerification} />
+        <UserInput team="red" onVerification={this.handleVerification} />
       </div>
 
       // </div>

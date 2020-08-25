@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import apiKey from "./APIKEY";
 import Axios from "axios";
+import APIKEY from "./APIKEY";
 
 const api = Axios.create({
-  baseURL: "https://crudcrud.com/api/" + apiKey,
+  baseURL: "https://crudcrud.com/api/" + APIKEY,
 });
 
 class UserInput extends Component {
@@ -25,10 +25,12 @@ class UserInput extends Component {
     const team = this.props.team;
 
     api.get("/" + team).then((res) => {
-      console.log(res);
       const players = res.data;
       players.forEach((player) => {
-        if (player.username === username && player.password === password) {
+        if (
+          player.data.username === username &&
+          player.data.password === password
+        ) {
           this.setState({ verified: true }, () => {
             this.props.onVerification(this.state.verified);
           });

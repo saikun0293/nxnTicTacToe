@@ -47,7 +47,7 @@
   color: black;
 }
 
-.team-btns {
+/* .team-btns {
   margin: 10px auto;
 }
 
@@ -57,6 +57,22 @@
   font-family: "Montserrat" !important;
   width: 100px;
   padding: 10px 20px;
+} */
+
+.team-btns {
+  width: 200px;
+  text-align: center;
+  margin: 10px auto;
+}
+
+.team-btn {
+  display: inline-block;
+  width: 50px;
+  padding: 10px;
+}
+
+.team-btn:active {
+  background-color: white;
 }
 
 .red {
