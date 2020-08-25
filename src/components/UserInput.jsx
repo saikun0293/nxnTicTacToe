@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import APIKEY from "./APIKEY";
+import { FontAwesomeIcon } from "../../node_modules/@fortawesome/react-fontawesome";
+import { faJoomla } from "../../node_modules/@fortawesome/free-brands-svg-icons";
+import { faSlack } from "../../node_modules/@fortawesome/free-brands-svg-icons";
+import "../styles/UserInput.css";
 
 import { FontAwesomeIcon } from "../../node_modules/@fortawesome/react-fontawesome";
 import { faSlack } from "../../node_modules/@fortawesome/free-brands-svg-icons";
