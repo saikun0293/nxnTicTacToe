@@ -42,19 +42,63 @@ class UserInput extends Component {
 
   render() {
     return (
-      <form className="userinput-field" onSubmit={this.handleSubmit}>
-        <input
-          name="username"
-          type="text"
-          onChange={(e) => this.handleInput(e)}
-        />
-        <input
-          name="password"
-          type="password"
-          onChange={(e) => this.handleInput(e)}
-        />
-        <button type="submit">Verify</button>
-      </form>
+
+      <div>
+        <section>
+          <div className="flex-row1">
+            <FontAwesomeIcon
+              className="fajoomla"
+              icon={faJoomla}
+              color="white"
+            />
+            <FontAwesomeIcon className="faslack" icon={faSlack} color="white" />
+          </div>
+
+          <div className="wave wave1"></div>
+          <div className="wave wave2"></div>
+          <div className="wave wave3"></div>
+          <div className="wave wave4"></div>
+        </section>
+        <div className="flex-row">
+          <div className="userinput-field">
+            <form className="blueteam-ui" onSubmit={this.handleSubmit}>
+              <label htmlFor="username">Username</label>
+              <input
+                name="username"
+                type="text"
+                onChange={(e) => this.handleInput(e)}
+              />
+              <label htmlFor="password">Password</label>
+              <input
+                name="password"
+                type="password"
+                onChange={(e) => this.handleInput(e)}
+              />
+              <button className="verify-btn" type="submit">
+                Verify
+              </button>
+            </form>
+            <form className="redteam-ui" onSubmit={this.handleSubmit}>
+              <label htmlFor="username">Username</label>
+              <input
+                name="username"
+                type="text"
+                onChange={(e) => this.handleInput(e)}
+              />
+              <label htmlFor="password">Password</label>
+              <input
+                name="password"
+                type="password"
+                onChange={(e) => this.handleInput(e)}
+              />
+              <button className="verify-btn" type="submit">
+                Verify
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
     );
   }
 }

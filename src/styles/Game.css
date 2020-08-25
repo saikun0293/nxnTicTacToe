@@ -47,28 +47,31 @@
   height: 52px;
   border-spacing: 15px;
   border-collapse: separate;
+  margin: 1em;
 }
 .logocol {
   display: contents;
 }
+
+.logocol .logo {
+  width: 8vw;
+  height: 10vh;
+  position: static;
+}
 .redscore {
-  background: linear-gradient(to right, #eb3b06 0%, #2d4059 100%);
+  background-color: #fa5252;
+  border-radius: 20px 0 0 0;
 }
 .bluescore {
-  background: linear-gradient(to right, #2d4059 0%, #3818eb 100%);
+  background-color: #0080fe;
+  border-radius: 0 0 20px 0;
 }
 .redscore,
 .bluescore {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   align-items: baseline;
   box-sizing: border-box;
   width: 50%;
   text-align: center;
-  border-radius: 20px 20px;
   font-size: 30px;
-}
-.logocol .logo {
-  width: 10vw;
-  height: 10vh;
-  position: static;
 }

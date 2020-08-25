@@ -37,12 +37,12 @@ class GamePage extends Component {
         {/* Match score here */}
         <div className="matchscore">
           <div className="logocol">
-            <FontAwesomeIcon className="logo" icon={faSlack} color="red" />
+            <FontAwesomeIcon className="logo" icon={faSlack} color="black" />
             <div className="redscore" width="50vw" height="50vh"></div>
           </div>
           <div className="logocol">
             <div className="bluescore" width="50vw" height="50vh"></div>
-            <FontAwesomeIcon className="logo" icon={faJoomla} color="blue" />
+            <FontAwesomeIcon className="logo" icon={faJoomla} color="black" />
           </div>
         </div>
 
