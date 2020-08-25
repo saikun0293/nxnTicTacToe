@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import Axios from "axios";
 import APIKEY from "./APIKEY";
 
+import { FontAwesomeIcon } from "../../node_modules/@fortawesome/react-fontawesome";
+import { faSlack } from "../../node_modules/@fortawesome/free-brands-svg-icons";
+import { faJoomla } from "../../node_modules/@fortawesome/free-brands-svg-icons";
+
 const api = Axios.create({
   baseURL: "https://crudcrud.com/api/" + APIKEY,
 });
@@ -48,7 +52,6 @@ class UserInput extends Component {
 
   render() {
     return (
-
       <div>
         <section>
           <div className="flex-row1">
@@ -104,7 +107,6 @@ class UserInput extends Component {
           </div>
         </div>
       </div>
-
     );
   }
 }
