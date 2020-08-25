@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import "../styles/Register.css";
+import Axios from "axios";
+import APIKEY from "./APIKEY";
+
+const api = Axios.create({ baseURL: "https://crudcrud.com/api/" + APIKEY });
 
 class Register extends Component {
   state = {
@@ -15,20 +19,32 @@ class Register extends Component {
     this.setState({ [name]: value });
   };
 
-  handleTeam = (team) => {
-    this.setState({ team: team });
+  handleRegister = (event) => {
+    const { username, password, team } = this.state;
+    const data = {
+      username: username,
+      password: password,
+      team: team,
+      scores: [],
+      total_matches: 0,
+      total_score: 0,
+    };
+    api
+      .post("/" + team, { data })
+      .then((res) => {
+        window.alert("Successfully registered!, Now go and conquer the field!");
+        this.props.history.push("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    event.preventDefault();
   };
 
   render() {
-    console.log(this.state.team);
     return (
       <div className="register">
-        <form
-          className={
-            "input-field " + (this.state.displayTeam ? "fadeOut" : "fadeIn")
-          }
-          onSubmit={this.handleSubmit}
-        >
+        <form className="input-field" onSubmit={this.handleSubmit}>
           <label htmlFor="username">Username</label>
 
           <input
@@ -45,13 +61,25 @@ class Register extends Component {
             onChange={(e) => this.handleInput(e)}
           />
           <div className="team-btns">
-            <button className="blue team-btn">Blue Team</button>
-            <button className="red team-btn">Red Team</button>
+            <div
+              className="blue team-btn"
+              style={{ backgroundColor: this.state.team === "blue" && "white" }}
+              onClick={() => this.setState({ team: "blue" })}
+            >
+              Blue Team
+            </div>
+            <div
+              className="red team-btn"
+              style={{ backgroundColor: this.state.team === "red" && "white" }}
+              onClick={() => this.setState({ team: "red" })}
+            >
+              Red Team
+            </div>
           </div>
 
           <button
-            onClick={() => {
-              this.handleRegister();
+            onClick={(event) => {
+              this.handleRegister(event);
             }}
             className="register-btn"
           >
