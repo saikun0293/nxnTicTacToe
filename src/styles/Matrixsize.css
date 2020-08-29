@@ -36,6 +36,12 @@
   color: white;
   border: none;
   padding: 10px 15px;
+  text-decoration: none;
+}
+
+.submit:hover {
+  color: black;
+  background-color: white;
 }
 
 .flex-row {

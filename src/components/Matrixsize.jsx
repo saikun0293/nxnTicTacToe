@@ -1,19 +1,33 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "../styles/Matrixsize.css";
 
 class Matrixsize extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-  state = { matrixSize: "" };
+  state = {
+    matrixSize: 3,
+    disabled: true,
+    blue_username: "",
+    red_username: "",
+    red_id: "",
+    blue_id: "",
+  };
+
   handleUpdate = (e) => {
     const matrixSize = e.target.value;
     this.setState({ matrixSize });
   };
-  handleSubmit = () => {
-    this.props.updateMatrixSize(this.state.matrixSize);
-    this.props.handleToggle();
-  };
+
+  componentWillReceiveProps(props) {
+    const {
+      blue_username,
+      red_username,
+      disabled,
+      red_id,
+      blue_id,
+    } = props.presentState;
+    this.setState({ disabled, red_username, blue_username, red_id, blue_id });
+  }
+
   render() {
     return (
       <div className="flex-row">
@@ -22,13 +36,24 @@ class Matrixsize extends Component {
             id="matrixsize"
             type="number"
             name="MatrixSize"
-            placeholder="Matrixsize"
+            placeholder="Matrix Size"
             className="matrix-input"
             onChange={this.handleUpdate}
           />
-          <button className="submit" onClick={(e) => this.handleSubmit(e)}>
+          <Link
+            to={{
+              pathname: "/game",
+              state: {
+                ...this.state,
+              },
+            }}
+            className="submit"
+            style={{
+              pointerEvents: this.state.disabled === true ? "none" : "auto",
+            }}
+          >
             Start Game
-          </button>
+          </Link>
         </form>
       </div>
     );

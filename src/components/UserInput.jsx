@@ -1,66 +1,17 @@
 import React, { Component } from "react";
-import Axios from "axios";
-import APIKEY from "./APIKEY";
-import { FontAwesomeIcon } from "../../node_modules/@fortawesome/react-fontawesome";
-import { faJoomla } from "../../node_modules/@fortawesome/free-brands-svg-icons";
-import { faSlack } from "../../node_modules/@fortawesome/free-brands-svg-icons";
+// import { FontAwesomeIcon } from "../../node_modules/@fortawesome/react-fontawesome";
+// import { faJoomla } from "../../node_modules/@fortawesome/free-brands-svg-icons";
+// import { faSlack } from "../../node_modules/@fortawesome/free-brands-svg-icons";
 import "../styles/UserInput.css";
 
-const api = Axios.create({
-  baseURL: "https://crudcrud.com/api/" + APIKEY,
-});
-
 class UserInput extends Component {
-  state = {
-    username: "",
-    password: "",
-    verified: false,
-  };
-
-  handleInput = (event) => {
-    const { name, value } = event.target;
-    console.log(name);
-    console.log(value);
-    this.setState({ [name]: value });
-  };
-
-  handleSubmit = (event) => {
-    const { username, password } = this.state;
-    const team = this.props.team;
-
-    api.get("/" + team).then((res) => {
-      let found = false;
-      const players = res.data;
-      players.forEach((player) => {
-        if (
-          player.data.username === username &&
-          player.data.password === password
-        ) {
-          found = true;
-        }
-      });
-      if (found === true) {
-        this.setState({ verified: true }, () =>
-          this.props.onVerification(this.state.verified)
-        );
-      } else {
-        this.props.onVerification(this.state.verified);
-      }
-    });
-    event.preventDefault();
-  };
-
   render() {
     return (
       <div>
         <section>
           <div className="flex-row1">
-            <FontAwesomeIcon
-              className="fajoomla"
-              icon={faJoomla}
-              color="white"
-            />
-            <FontAwesomeIcon className="faslack" icon={faSlack} color="white" />
+            <i class="fab fa-joomla fa-9x"></i>
+            <i class="fab fa-slack fa-9x"></i>
           </div>
 
           <div className="wave wave1"></div>
@@ -70,35 +21,41 @@ class UserInput extends Component {
         </section>
         <div className="flex-row">
           <div className="userinput-field">
-            <form className="blueteam-ui" onSubmit={this.handleSubmit}>
+            <form
+              className="blueteam-ui"
+              onSubmit={(e) => this.props.onSubmit(e, "blue")}
+            >
               <label htmlFor="username">Username</label>
               <input
-                name="username"
+                name="blue_username"
                 type="text"
-                onChange={(e) => this.handleInput(e)}
+                onChange={(e) => this.props.onInput(e)}
               />
               <label htmlFor="password">Password</label>
               <input
-                name="password"
+                name="blue_password"
                 type="password"
-                onChange={(e) => this.handleInput(e)}
+                onChange={(e) => this.props.onInput(e)}
               />
               <button className="verify-btn" type="submit">
                 Verify
               </button>
             </form>
-            <form className="redteam-ui" onSubmit={this.handleSubmit}>
+            <form
+              className="redteam-ui"
+              onSubmit={(e) => this.props.onSubmit(e, "red")}
+            >
               <label htmlFor="username">Username</label>
               <input
-                name="username"
+                name="red_username"
                 type="text"
-                onChange={(e) => this.handleInput(e)}
+                onChange={(e) => this.props.onInput(e)}
               />
               <label htmlFor="password">Password</label>
               <input
-                name="password"
+                name="red_password"
                 type="password"
-                onChange={(e) => this.handleInput(e)}
+                onChange={(e) => this.props.onInput(e)}
               />
               <button className="verify-btn" type="submit">
                 Verify
