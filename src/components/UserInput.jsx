@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import "../styles/UserInput.css";
-import { Link } from "react-router-dom";
 
 class UserInput extends Component {
   render() {
     return (
       <div>
         <section>
+          <div className="title">Marine Games</div>
           <div className="flex-row1">
             <i style={{ color: "white" }} className="fab fa-joomla fa-9x"></i>
             <i style={{ color: "white" }} className="fab fa-slack fa-9x"></i>
