@@ -66,7 +66,11 @@ class AuthenticationPage extends Component {
     return (
       <div className="authBody">
         <UserInput onInput={this.handleInput} onSubmit={this.handleSubmit} />
-        <Link to="/register">Register</Link>
+        <div className="register-section">
+          <Link className="auth-register" to="/register">
+            Register
+          </Link>
+        </div>
         <Matrixsize presentState={this.state} />
       </div>
     );
