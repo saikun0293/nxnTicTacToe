@@ -3,9 +3,24 @@ import "../styles/Scoreboard.css";
 import goldenglobe from "../Images/golden-globe.svg";
 import silvercup from "../Images/silver-cup.svg";
 import bronzecup from "../Images/bronze-trophy.svg";
+import Axios from "axios";
+import APIKEY from "./APIKEY";
 
+const api = Axios.create({ baseURL: "https://crudcrud.com/api/" + APIKEY });
 class Scoreboard extends Component {
   state = {};
+
+  componentDidMount() {
+    let allPlayers = [];
+    api.get("/red").then((res) => {
+      allPlayers = allPlayers.concat(res.data);
+    });
+    api.get("/blue").then((res) => {
+      allPlayers = allPlayers.concat(res.data);
+    });
+
+    console.log(allPlayers);
+  }
   render() {
     return (
       <div className="leaderboardContainer">

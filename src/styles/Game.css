@@ -2,7 +2,7 @@
 
 .status-container {
   margin: 20px auto;
-  padding: 50px;
+  padding: 15px 30px;
   font-size: 20px;
   width: 400px;
   background-color: #ffffff;
@@ -11,6 +11,7 @@
   background-position: 0 0;
   border-radius: 20px;
   animation: animatedBackground 3s linear infinite;
+  height: 230px;
 }
 
 @keyframes animatedBackground {
@@ -98,4 +99,69 @@
 
 .fa-slack {
   color: #ff6464;
+}
+
+.layout {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.status {
+  background-color: #222831;
+  border: 2px solid white;
+  border-radius: 20px;
+  padding: 15px 30px;
+  color: white;
+  font-family: "Montserrat";
+  font-size: 30px;
+  font-weight: 700;
+  margin: 20px 0;
+}
+
+.round {
+  color: black;
+  font-family: "Montserrat";
+  font-size: 30px;
+  font-weight: 700;
+  background-color: white;
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;
+  border-radius: 20px;
+  padding: 10px 15px;
+}
+
+@media only screen and (max-width: 1055px) {
+  .layout {
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 821px) {
+  .red-col {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .blue-col {
+    flex-direction: column-reverse;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 662px) {
+  .redscore {
+    font-size: 25px;
+    flex-direction: column;
+    width: 200px;
+    padding: 10px 0;
+  }
+  .bluescore {
+    font-size: 25px;
+    flex-direction: column-reverse;
+    width: 200px;
+    padding: 10px 0;
+  }
 }
