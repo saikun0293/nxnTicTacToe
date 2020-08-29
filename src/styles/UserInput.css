@@ -43,6 +43,17 @@
   justify-content: center;
 }
 
+.flex-row1 {
+  margin-top: 70px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.fab {
+  color: white;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
+}
+
 .btn:hover,
 .btn:hover {
   background-color: #eeeeee;

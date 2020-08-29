@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import dolphin from "../dolphin.svg";
-// import shiplogo from "../pirate.png";
 import "../styles/Navbar.css";
 import { Link } from "react-router-dom";
 

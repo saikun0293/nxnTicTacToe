@@ -14,8 +14,6 @@ class Register extends Component {
 
   handleInput = (event) => {
     const { name, value } = event.target;
-    console.log(name);
-    console.log(value);
     this.setState({ [name]: value });
   };
 

@@ -4,7 +4,7 @@ import "../styles/tttstyle.css";
 
 class TicTacToe extends Component {
   state = {
-    dimensions: 10,
+    dimensions: 3,
     width: 450,
     coord: [],
     turn: "X",
@@ -23,8 +23,9 @@ class TicTacToe extends Component {
     },
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state.dimensions = Number(this.props.dimensions);
     let d = this.state.dimensions;
     for (let i = 0; i < d; i++) {
       let val = [];
@@ -34,6 +35,7 @@ class TicTacToe extends Component {
       }
       this.state.values.push(val);
     }
+    this.state.turn = this.props.turn;
   }
 
   handleWinner = () => {
@@ -81,7 +83,7 @@ class TicTacToe extends Component {
       this.props.onWinner("X");
       this.setState({ endGame: true });
     } else if (win === "O") {
-      this.props.onWinner("Y");
+      this.props.onWinner("O");
       this.setState({ endGame: true });
     } else if (count === dimensions * dimensions) {
       this.props.onWinner("D");
@@ -95,7 +97,9 @@ class TicTacToe extends Component {
       let { values, turn } = this.state;
       values[x][y] = turn;
       turn = turn === "X" ? "O" : "X";
-      this.setState({ values: values, turn: turn });
+      this.setState({ values: values, turn: turn }, () => {
+        this.props.onChangeTurn(this.state.turn);
+      });
       this.handleWinner();
     }
   };
@@ -114,6 +118,7 @@ class TicTacToe extends Component {
                 y={d[1]}
                 dim={this.state.dimensions}
                 width={this.state.width}
+                endGame={this.state.endGame}
               />
             );
           })}

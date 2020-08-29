@@ -7,7 +7,12 @@ class Square extends Component {
     y: 0,
     side: 0,
     content: null,
+    endGame: false,
   };
+
+  componentWillReceiveProps(props) {
+    this.setState({ endGame: props.endGame });
+  }
 
   squareStyle = {
     width: 0,
@@ -16,9 +21,9 @@ class Square extends Component {
   };
 
   squareClick = (event) => {
-    const { x, y } = this.state;
+    const { x, y, endGame } = this.state;
     let value = event.target.textContent;
-    if (value !== "X" && value !== "O") {
+    if (value !== "X" && value !== "O" && endGame === false) {
       const xando = this.props.player === "X" ? "X" : "O";
       event.target.innerHTML =
         "<div class='" + xando + "'>" + this.props.player + "</div>";
