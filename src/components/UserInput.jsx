@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../styles/UserInput.css";
+import { Link } from "react-router-dom";
 
 class UserInput extends Component {
   render() {
@@ -16,49 +17,47 @@ class UserInput extends Component {
           <div className="wave wave3"></div>
           <div className="wave wave4"></div>
         </section>
-        <div className="flex-row">
-          <div className="userinput-field">
-            <form
-              className="blueteam-ui"
-              onSubmit={(e) => this.props.onSubmit(e, "blue")}
-            >
-              <label htmlFor="username">Username</label>
-              <input
-                name="blue_username"
-                type="text"
-                onChange={(e) => this.props.onInput(e)}
-              />
-              <label htmlFor="password">Password</label>
-              <input
-                name="blue_password"
-                type="password"
-                onChange={(e) => this.props.onInput(e)}
-              />
-              <button className="verify-btn" type="submit">
-                Verify
-              </button>
-            </form>
-            <form
-              className="redteam-ui"
-              onSubmit={(e) => this.props.onSubmit(e, "red")}
-            >
-              <label htmlFor="username">Username</label>
-              <input
-                name="red_username"
-                type="text"
-                onChange={(e) => this.props.onInput(e)}
-              />
-              <label htmlFor="password">Password</label>
-              <input
-                name="red_password"
-                type="password"
-                onChange={(e) => this.props.onInput(e)}
-              />
-              <button className="verify-btn" type="submit">
-                Verify
-              </button>
-            </form>
-          </div>
+        <div className="userinput-field">
+          <form
+            className="blueteam-ui"
+            onSubmit={(e) => this.props.onSubmit(e, "blue")}
+          >
+            <label htmlFor="username">Username</label>
+            <input
+              name="blue_username"
+              type="text"
+              onChange={(e) => this.props.onInput(e)}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              name="blue_password"
+              type="password"
+              onChange={(e) => this.props.onInput(e)}
+            />
+            <button className="verify-btn" type="submit">
+              Verify
+            </button>
+          </form>
+          <form
+            className="redteam-ui"
+            onSubmit={(e) => this.props.onSubmit(e, "red")}
+          >
+            <label htmlFor="username">Username</label>
+            <input
+              name="red_username"
+              type="text"
+              onChange={(e) => this.props.onInput(e)}
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              name="red_password"
+              type="password"
+              onChange={(e) => this.props.onInput(e)}
+            />
+            <button className="verify-btn" type="submit">
+              Verify
+            </button>
+          </form>
         </div>
       </div>
     );

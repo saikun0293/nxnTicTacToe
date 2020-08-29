@@ -6,7 +6,7 @@
   border: 2px solid black;
   height: 40px;
   padding: 10px 15px;
-  margin-top: 7em;
+  margin-top: 1em;
   margin-bottom: 0;
   display: flex;
   align-items: center;
@@ -46,7 +46,7 @@
 
 .flex-row {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 #matrixsize {
   border-radius: 20px;

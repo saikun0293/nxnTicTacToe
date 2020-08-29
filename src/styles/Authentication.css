@@ -1,11 +1,28 @@
 .authBody {
-  height: 120vh;
   background-color: white;
+  height: 100%;
 }
 
 .svg-inline--fa.fa-w-14 {
   width: 20vw;
   height: 20vh;
+}
+
+.register-section {
+  text-align: center;
+  padding-top: 30px;
+}
+
+.auth-register {
+  background-color: #222831;
+  color: white;
+  text-decoration: none;
+  border: none;
+  outline: none;
+  font-family: "Montserrat" !important;
+  padding: 10px 15px;
+  border-radius: 20px;
+  margin: 20px auto;
 }
 /* .fajoomla {
   margin-right: 20em;

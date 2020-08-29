@@ -61,46 +61,29 @@ class GamePage extends Component {
 
   updateWinnerScore = (winner) => {
     const { red_id, blue_id } = this.props.location.state;
-    let redData, blueData;
     api.get("/red/" + red_id).then((res) => {
-      redData = res.data;
-      console.log("red data", res);
+      const redData = res.data;
+      delete redData._id;
       redData.scores.push(winner === "X" ? 1 : 0);
       redData.total_matches++;
       redData.total_score =
         winner === "X" ? redData.total_score + 1 : redData.total_score;
-      console.log(redData);
+
+      api.put("/red/" + red_id, redData).then((res) => {
+        console.log(res);
+      });
     });
     api.get("/blue/" + blue_id).then((res) => {
-      blueData = res.data;
-      console.log("blue data", res);
+      const blueData = res.data;
+      delete blueData._id;
       blueData.scores.push(winner === "O" ? 1 : 0);
       blueData.total_matches++;
       blueData.total_score =
         winner === "O" ? blueData.total_score + 1 : blueData.total_score;
-    });
 
-    api.put("/red/" + red_id, redData).then((res) => {
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader("Access-Control-Allow-Credentials", "true");
-      res.setHeader("Access-Control-Max-Age", "1800");
-      res.setHeader("Access-Control-Allow-Headers", "content-type");
-      res.setHeader(
-        "Access-Control-Allow-Methods",
-        "PUT, POST, GET, DELETE, PATCH, OPTIONS"
-      );
-      console.log(res);
-    });
-    api.put("/blue/" + blue_id, blueData).then((res) => {
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader("Access-Control-Allow-Credentials", "true");
-      res.setHeader("Access-Control-Max-Age", "1800");
-      res.setHeader("Access-Control-Allow-Headers", "content-type");
-      res.setHeader(
-        "Access-Control-Allow-Methods",
-        "PUT, POST, GET, DELETE, PATCH, OPTIONS"
-      );
-      console.log(res);
+      api.put("/blue/" + blue_id, blueData).then((res) => {
+        console.log(res);
+      });
     });
   };
 
