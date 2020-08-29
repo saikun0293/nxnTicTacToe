@@ -46,10 +46,7 @@ class AuthenticationPage extends Component {
       let found = false;
       const players = res.data;
       players.forEach((player) => {
-        if (
-          player.data.username === username &&
-          player.data.password === password
-        ) {
+        if (player.username === username && player.password === password) {
           found = true;
           this.setState({ [team + "_id"]: player._id });
         }

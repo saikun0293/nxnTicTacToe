@@ -3,17 +3,8 @@ import Navbar from "./Navbar";
 import Axios from "axios";
 import TicTacToe from "./TicTacToe";
 import "../styles/Game.css";
-import { FontAwesomeIcon } from "../../node_modules/@fortawesome/react-fontawesome";
-import { faSlack } from "../../node_modules/@fortawesome/free-brands-svg-icons";
-import { faJoomla } from "../../node_modules/@fortawesome/free-brands-svg-icons";
 import APIKEY from "./APIKEY";
 
-// const config = {
-//   headers: {
-//     "Access-Control-Allow-Origin": "*",
-//     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-//   },
-// };
 const api = Axios.create({ baseURL: "https://crudcrud.com/api/" + APIKEY });
 
 class GamePage extends Component {
@@ -44,10 +35,10 @@ class GamePage extends Component {
     const { red_id, blue_id } = this.props.location.state;
     //Updating scores
     api.get("/red/" + red_id).then((res) => {
-      this.setState({ redScore: res.data.data.total_score });
+      this.setState({ redScore: res.data.total_score });
     });
     api.get("/blue/" + blue_id).then((res) => {
-      this.setState({ blueScore: res.data.data.total_score });
+      this.setState({ blueScore: res.data.total_score });
     });
   }
 
@@ -74,23 +65,19 @@ class GamePage extends Component {
     api.get("/red/" + red_id).then((res) => {
       redData = res.data;
       console.log("red data", res);
-      redData.data.scores.push(winner === "X" ? 1 : 0);
-      redData.data.total_matches++;
-      redData.data.total_score =
-        winner === "X"
-          ? redData.data.total_score + 1
-          : redData.data.total_score;
+      redData.scores.push(winner === "X" ? 1 : 0);
+      redData.total_matches++;
+      redData.total_score =
+        winner === "X" ? redData.total_score + 1 : redData.total_score;
       console.log(redData);
     });
     api.get("/blue/" + blue_id).then((res) => {
       blueData = res.data;
       console.log("blue data", res);
-      blueData.data.scores.push(winner === "O" ? 1 : 0);
-      blueData.data.total_matches++;
-      blueData.data.total_score =
-        winner === "O"
-          ? blueData.data.total_score + 1
-          : blueData.data.total_score;
+      blueData.scores.push(winner === "O" ? 1 : 0);
+      blueData.total_matches++;
+      blueData.total_score =
+        winner === "O" ? blueData.total_score + 1 : blueData.total_score;
     });
 
     api.put("/red/" + red_id, redData).then((res) => console.log(res));

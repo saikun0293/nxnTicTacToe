@@ -28,7 +28,7 @@ class Register extends Component {
       total_score: 0,
     };
     api
-      .post("/" + team, { data })
+      .post("/" + team, data)
       .then((res) => {
         window.alert("Successfully registered!, Now go and conquer the field!");
         this.props.history.push("/");

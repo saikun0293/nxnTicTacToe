@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-// import { FontAwesomeIcon } from "../../node_modules/@fortawesome/react-fontawesome";
-// import { faJoomla } from "../../node_modules/@fortawesome/free-brands-svg-icons";
-// import { faSlack } from "../../node_modules/@fortawesome/free-brands-svg-icons";
 import "../styles/UserInput.css";
 
 class UserInput extends Component {
@@ -10,8 +7,8 @@ class UserInput extends Component {
       <div>
         <section>
           <div className="flex-row1">
-            <i class="fab fa-joomla fa-9x"></i>
-            <i class="fab fa-slack fa-9x"></i>
+            <i style={{ color: "white" }} className="fab fa-joomla fa-9x"></i>
+            <i style={{ color: "white" }} className="fab fa-slack fa-9x"></i>
           </div>
 
           <div className="wave wave1"></div>
