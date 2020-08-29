@@ -80,8 +80,28 @@ class GamePage extends Component {
         winner === "O" ? blueData.total_score + 1 : blueData.total_score;
     });
 
-    api.put("/red/" + red_id, redData).then((res) => console.log(res));
-    api.put("/blue/" + blue_id, blueData).then((res) => console.log(res));
+    api.put("/red/" + red_id, redData).then((res) => {
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Max-Age", "1800");
+      res.setHeader("Access-Control-Allow-Headers", "content-type");
+      res.setHeader(
+        "Access-Control-Allow-Methods",
+        "PUT, POST, GET, DELETE, PATCH, OPTIONS"
+      );
+      console.log(res);
+    });
+    api.put("/blue/" + blue_id, blueData).then((res) => {
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Max-Age", "1800");
+      res.setHeader("Access-Control-Allow-Headers", "content-type");
+      res.setHeader(
+        "Access-Control-Allow-Methods",
+        "PUT, POST, GET, DELETE, PATCH, OPTIONS"
+      );
+      console.log(res);
+    });
   };
 
   handlePlay = () => {
@@ -129,7 +149,7 @@ class GamePage extends Component {
         {/* Match score here */}
         <div className="matchscore">
           <div className="red-col">
-            <i class="fab fa-slack fa-5x"></i>
+            <i className="fab fa-slack fa-5x"></i>
             <div className="redscore" width="50vw" height="50vh">
               <div className="player-name">{this.state.redPlayer}</div>
               <div className="red-player-score">{this.state.redScore}</div>
@@ -140,7 +160,7 @@ class GamePage extends Component {
               <div className="blue-player-score">{this.state.blueScore}</div>
               <div className="player-name">{this.state.bluePlayer}</div>
             </div>
-            <i class="fab fa-joomla fa-5x"></i>
+            <i className="fab fa-joomla fa-5x"></i>
           </div>
         </div>
 
@@ -152,8 +172,8 @@ class GamePage extends Component {
             onChangeTurn={this.handleTurn}
           />
           <div className="status-container">
+            <div className="round">{`Round ${this.state.round}`}</div>
             <div className="status">{this.state.status}</div>
-            <p>{`Round ${this.state.round}`}</p>
             <div>
               <button className="btn" onClick={() => this.handlePlay()}>
                 Play Again

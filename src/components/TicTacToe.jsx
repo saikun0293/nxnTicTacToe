@@ -10,6 +10,7 @@ class TicTacToe extends Component {
     turn: "X",
     values: [],
     endGame: false,
+    style: {},
   };
 
   style = {
