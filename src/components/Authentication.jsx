@@ -24,8 +24,6 @@ class AuthenticationPage extends Component {
         <UserInput onVerification={this.handleVerification} />
         <Matrixsize />
       </div>
-
-      // </div>
     );
   }
 }
