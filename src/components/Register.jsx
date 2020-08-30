@@ -14,8 +14,6 @@ class Register extends Component {
 
   handleInput = (event) => {
     const { name, value } = event.target;
-    console.log(name);
-    console.log(value);
     this.setState({ [name]: value });
   };
 
@@ -30,7 +28,7 @@ class Register extends Component {
       total_score: 0,
     };
     api
-      .post("/" + team, { data })
+      .post("/" + team, data)
       .then((res) => {
         window.alert("Successfully registered!, Now go and conquer the field!");
         this.props.history.push("/");

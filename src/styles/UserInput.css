@@ -5,29 +5,39 @@
   padding: 20px 15px;
   border: 2px solid black;
   border-radius: 20px;
-
-  height: 200px;
+  height: 175px;
 }
 .blueteam-ui {
   background-color: #00e0ff;
-  margin-right: 10em;
+  /* margin-right: 10em; */
 }
 .redteam-ui {
   background-color: #ff6464;
 }
 .userinput-field {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
+
+.title {
+  color: white;
+  font-family: "Montserrat";
+  text-align: center;
+  font-weight: 700;
+  font-size: 40px;
+  margin-top: 10px;
+}
+
 .userinput-field input {
   border-radius: 20px;
   border: none;
   width: 300px;
-  height: 40px;
+  height: 30px;
   margin: 10px 0;
   outline: none;
   padding: 0 20px;
   font-family: "Montserrat";
+  font-size: 15px;
 }
 .verify-btn {
   background-color: #222831;
@@ -41,6 +51,17 @@
   font-family: "Montserrat" !important;
   display: flex;
   justify-content: center;
+}
+
+.flex-row1 {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.fab {
+  color: white;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: black;
 }
 
 .btn:hover,
