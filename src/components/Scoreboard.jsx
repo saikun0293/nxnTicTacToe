@@ -8,20 +8,67 @@ import APIKEY from "./APIKEY";
 
 const api = Axios.create({ baseURL: "https://crudcrud.com/api/" + APIKEY });
 class Scoreboard extends Component {
-  state = {};
+  state = {
+    redPlayers: [],
+    bluePlayers: [],
+    players: [],
+  };
+
+  constructor() {
+    super();
+    for (var i = this.state.players.length; i < 10; i++) {
+      this.state.players.push({
+        username: "-",
+        password: "-",
+        total_score: 0,
+        team: "-",
+        total_matches: 0,
+        scores: [],
+      });
+    }
+  }
 
   componentDidMount() {
-    let allPlayers = [];
     api.get("/red").then((res) => {
-      allPlayers = allPlayers.concat(res.data);
+      this.setState({ redPlayers: res.data }, () => {
+        console.log("redplayers added!");
+      });
     });
     api.get("/blue").then((res) => {
-      allPlayers = allPlayers.concat(res.data);
+      this.setState({ bluePlayers: res.data }, () => {
+        console.log("blueplayers added!");
+      });
     });
-
-    console.log(allPlayers);
   }
+
+  componentDidUpdate() {
+    const { redPlayers, bluePlayers, players } = this.state;
+    if (
+      redPlayers.length !== 0 &&
+      bluePlayers.length !== 0 &&
+      players[0].username === "-"
+    ) {
+      const players = [...redPlayers, ...bluePlayers];
+
+      players.sort((p1, p2) => p2.total_score - p1.total_score);
+      if (players.length < 10) {
+        for (var i = players.length; i < 10; i++) {
+          players.push({
+            username: "-",
+            password: "-",
+            total_score: 0,
+            team: "-",
+            total_matches: 0,
+            scores: [],
+          });
+        }
+      }
+      this.setState({ players });
+    }
+  }
+
   render() {
+    console.log("render", this.state.players[0]);
     return (
       <div className="leaderboardContainer">
         <div className="thead">
@@ -33,47 +80,47 @@ class Scoreboard extends Component {
               <th className="col1">
                 <img src={goldenglobe} alt="React Logo" width="40vw"></img>
               </th>
-              <td className="col">Yash Prasad</td>
+              <td className="col">{this.state.players[0].username}</td>
             </tr>
             <tr className="rowline">
               <th className="col2">
                 <img src={silvercup} alt="React Logo" width="40vw"></img>
               </th>
-              <td className="col">Vaibhav Prasad</td>
+              <td className="col">{this.state.players[1].username}</td>
             </tr>
             <tr className="rowline">
               <th className="col3">
                 <img src={bronzecup} alt="React Logo" width="40vw"></img>
               </th>
-              <td className="col">Nihar Patel</td>
+              <td className="col">{this.state.players[2].username}</td>
             </tr>
             <tr className="rowline">
               <th className="col">4</th>
-              <td className="col">Sai Teja</td>
+              <td className="col">{this.state.players[3].username}</td>
             </tr>
             <tr className="rowline">
               <th className="col">5</th>
-              <td className="col">Sampreet</td>
+              <td className="col">{this.state.players[4].username}</td>
             </tr>
             <tr className="rowline">
               <th className="col">6</th>
-              <td className="col">Ritvik Gupta</td>
+              <td className="col">{this.state.players[5].username}</td>
             </tr>
             <tr className="rowline">
               <th className="col">7</th>
-              <td className="col">Chirag Agrawal</td>
+              <td className="col">{this.state.players[6].username}</td>
             </tr>
             <tr className="rowline">
               <th className="col">8</th>
-              <td className="col">Akshith</td>
+              <td className="col">{this.state.players[7].username}</td>
             </tr>
             <tr className="rowline">
               <th className="col">9</th>
-              <td className="col">Hemendra</td>
+              <td className="col">{this.state.players[8].username}</td>
             </tr>
             <tr className="rowline">
               <th className="col">10</th>
-              <td className="col">Khushi Patel</td>
+              <td className="col">{this.state.players[9].username}</td>
             </tr>
           </tbody>
         </table>
