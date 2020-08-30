@@ -65,6 +65,7 @@ class AuthenticationPage extends Component {
   render() {
     return (
       <div className="authBody">
+
         <UserInput onInput={this.handleInput} onSubmit={this.handleSubmit} />
         <div className="register-section">
           <Link className="auth-register" to="/register">
@@ -72,6 +73,7 @@ class AuthenticationPage extends Component {
           </Link>
         </div>
         <Matrixsize presentState={this.state} />
+
       </div>
     );
   }

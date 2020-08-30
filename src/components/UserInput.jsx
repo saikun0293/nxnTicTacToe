@@ -17,6 +17,7 @@ class UserInput extends Component {
           <div className="wave wave3"></div>
           <div className="wave wave4"></div>
         </section>
+
         <div className="userinput-field">
           <form
             className="blueteam-ui"
