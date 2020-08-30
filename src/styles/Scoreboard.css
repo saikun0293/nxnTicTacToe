@@ -1,7 +1,7 @@
 .leaderboardContainer {
   display: grid;
   background-size: cover;
-  height: 120vh;
+  height: 130vh;
   width: 100vw;
   margin: 0;
   padding: 0;
@@ -15,6 +15,7 @@
   height: 80vh;
   border-spacing: 0 8px;
   border-collapse: separate;
+  background-size: cover;
   background-color: turquoise;
   margin-bottom: 8em;
 }
@@ -34,6 +35,10 @@ tbody th.col2,
 tbody th.col3 {
   width: 30px;
   background-color: teal;
+}
+td.col {
+  font-family: "Montserrat";
+  text-align: center;
 }
 tbody th.col1 {
   background-color: gold;

@@ -75,7 +75,11 @@ class UserInput extends Component {
                 type="password"
                 onChange={(e) => this.handleInput(e)}
               />
-              <button className="verify-btn" type="submit">
+              <button
+                className="verify-btn"
+                type="submit"
+                onClick={this.props.onVerification}
+              >
                 Verify
               </button>
             </form>
@@ -92,7 +96,11 @@ class UserInput extends Component {
                 type="password"
                 onChange={(e) => this.handleInput(e)}
               />
-              <button className="verify-btn" type="submit">
+              <button
+                className="verify-btn"
+                type="submit"
+                onClick={this.props.onVerification}
+              >
                 Verify
               </button>
             </form>
