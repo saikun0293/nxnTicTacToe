@@ -84,7 +84,6 @@ class Scoreboard extends Component {
               <td className="col">{this.state.players[0].username}</td>
               <td className="col">Score</td>
               <td className="col">Team</td>
-             
             </tr>
             <tr className="rowline">
               <th className="col2">
@@ -93,19 +92,18 @@ class Scoreboard extends Component {
               <td className="col">{this.state.players[1].username}</td>
               <td className="col">Score</td>
               <td className="col">Team</td>
-             
             </tr>
             <tr className="rowline">
               <th className="col3">
                 <img src={bronzecup} alt="React Logo" width="40vw"></img>
               </th>
-     <td className="col">{this.state.players[2].username}</td>
+              <td className="col">{this.state.players[2].username}</td>
               <td className="col">Score</td>
               <td className="col">Team</td>
             </tr>
             <tr className="rowline">
               <th className="col">4</th>
-                    <td className="col">{this.state.players[3].username}</td>
+              <td className="col">{this.state.players[3].username}</td>
               <td className="col">Score</td>
               <td className="col">Team</td>
             </tr>
@@ -117,25 +115,25 @@ class Scoreboard extends Component {
             </tr>
             <tr className="rowline">
               <th className="col">6</th>
- <td className="col">{this.state.players[5].username}</td>
+              <td className="col">{this.state.players[5].username}</td>
               <td className="col">Score</td>
               <td className="col">Team</td>
             </tr>
             <tr className="rowline">
               <th className="col">7</th>
-                       <td className="col">{this.state.players[6].username}</td>
+              <td className="col">{this.state.players[6].username}</td>
               <td className="col">Score</td>
               <td className="col">Team</td>
             </tr>
             <tr className="rowline">
               <th className="col">8</th>
-            <td className="col">{this.state.players[7].username}</td>
+              <td className="col">{this.state.players[7].username}</td>
               <td className="col">Score</td>
               <td className="col">Team</td>
             </tr>
             <tr className="rowline">
               <th className="col">9</th>
-             <td className="col">{this.state.players[8].username}</td>
+              <td className="col">{this.state.players[8].username}</td>
               <td className="col">Score</td>
               <td className="col">Team</td>
             </tr>
@@ -144,7 +142,6 @@ class Scoreboard extends Component {
               <td className="col">{this.state.players[9].username}</td>
               <td className="col">Score</td>
               <td className="col">Team</td>
-            
             </tr>
           </tbody>
         </table>
