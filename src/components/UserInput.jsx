@@ -5,7 +5,7 @@ class UserInput extends Component {
   render() {
     return (
       <div>
-        <section>
+        <section className="ui-wave">
           <div className="title">Marine Games</div>
           <div className="flex-row1">
             <i style={{ color: "white" }} className="fab fa-joomla fa-9x"></i>
