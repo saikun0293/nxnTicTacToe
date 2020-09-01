@@ -9,7 +9,7 @@ import Register from "./components/Register";
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router basename="/">
         <Switch>
           <Route path="/" exact component={AuthenticationPage} />
           <Route path="/game" component={GamePage} />
