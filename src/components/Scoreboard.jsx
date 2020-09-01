@@ -25,6 +25,21 @@ class Scoreboard extends Component {
     }
   }
 
+  color = (index) => {
+    const style = {
+      backgroundColor: "",
+    };
+    if (this.state.players[0].team === "red") {
+      style.backgroundColor = "#ff6464";
+    } else if (this.state.players[0].team === "blue") {
+      style.backgroundColor = "#00e0ff";
+    } else {
+      style.backgroundColor = "#d6e0f0";
+    }
+
+    return style;
+  };
+
   componentDidMount() {
     api.get("/red").then((res) => {
       this.setState({ redPlayers: res.data }, () => {
@@ -75,52 +90,81 @@ class Scoreboard extends Component {
               <th className="col1">1</th>
 
               <td className="col">{this.state.players[0].username}</td>
-              <td className="col">Score</td>
+
+              <td className="col">{this.state.players[0].total_score}</td>
+              
+
             </tr>
             <tr className="rowline">
               <th className="col2">2</th>
               <td className="col">{this.state.players[1].username}</td>
-              <td className="col">Score</td>
+
+              <td className="col">{this.state.players[1].total_score}</td>
+
             </tr>
             <tr className="rowline">
               <th className="col3">3</th>
               <td className="col">{this.state.players[2].username}</td>
-              <td className="col">Score</td>
+
+              <td className="col">{this.state.players[2].total_score}</td>
+      
+
             </tr>
             <tr className="rowline">
               <th className="col">4</th>
               <td className="col">{this.state.players[3].username}</td>
-              <td className="col">Score</td>
+
+              <td className="col">{this.state.players[3].total_score}</td>
+              
+
             </tr>
             <tr className="rowline">
               <th className="col">5</th>
               <td className="col">{this.state.players[4].username}</td>
-              <td className="col">Score</td>
+
+              <td className="col">{this.state.players[4].total_score}</td>
+              
+
             </tr>
             <tr className="rowline">
               <th className="col">6</th>
               <td className="col">{this.state.players[5].username}</td>
-              <td className="col">Score</td>
+
+              <td className="col">{this.state.players[5].total_score}</td>
+              
+
             </tr>
             <tr className="rowline">
               <th className="col">7</th>
               <td className="col">{this.state.players[6].username}</td>
-              <td className="col">Score</td>
+
+              <td className="col">{this.state.players[6].total_score}</td>
+             
+
             </tr>
             <tr className="rowline">
               <th className="col">8</th>
               <td className="col">{this.state.players[7].username}</td>
-              <td className="col">Score</td>
+
+              <td className="col">{this.state.players[7].total_score}</td>
+              
+
             </tr>
             <tr className="rowline">
               <th className="col">9</th>
               <td className="col">{this.state.players[8].username}</td>
-              <td className="col">Score</td>
+
+              <td className="col">{this.state.players[8].total_score}</td>
+       
+
             </tr>
             <tr className="rowline">
               <th className="col">10</th>
               <td className="col">{this.state.players[9].username}</td>
-              <td className="col">Score</td>
+
+              <td className="col">{this.state.players[9].total_score}</td>
+             
+
             </tr>
           </tbody>
         </table>
