@@ -27,14 +27,15 @@ class Scoreboard extends Component {
 
   color = (index) => {
     const style = {
-      backgroundColor: "",
+      color: "",
+      fontSize: "30px",
     };
-    if (this.state.players[0].team === "red") {
-      style.backgroundColor = "#ff6464";
-    } else if (this.state.players[0].team === "blue") {
-      style.backgroundColor = "#00e0ff";
+    if (this.state.players[index].team === "red") {
+      style.color = "#ff6464";
+    } else if (this.state.players[index].team === "blue") {
+      style.color = "#00e0ff";
     } else {
-      style.backgroundColor = "#d6e0f0";
+      style.color = "#d6e0f0";
     }
 
     return style;
@@ -80,7 +81,7 @@ class Scoreboard extends Component {
   }
 
   render() {
-    console.log("render", this.state.players[0]);
+    console.log("render", this.state.players);
     return (
       <div className="leaderboardContainer">
         <table className="tableboard" align="center">
@@ -89,82 +90,69 @@ class Scoreboard extends Component {
             <tr className="rowline">
               <th className="col1">1</th>
 
-              <td className="col">{this.state.players[0].username}</td>
+              <td className="col" style={this.color(0)}>
+                {this.state.players[0].username}
+              </td>
 
               <td className="col">{this.state.players[0].total_score}</td>
-              
-
             </tr>
             <tr className="rowline">
               <th className="col2">2</th>
-              <td className="col">{this.state.players[1].username}</td>
+              <td className="col" style={this.color(1)}>
+                {this.state.players[1].username}
+              </td>
 
               <td className="col">{this.state.players[1].total_score}</td>
-
             </tr>
             <tr className="rowline">
               <th className="col3">3</th>
               <td className="col">{this.state.players[2].username}</td>
 
               <td className="col">{this.state.players[2].total_score}</td>
-      
-
             </tr>
             <tr className="rowline">
               <th className="col">4</th>
               <td className="col">{this.state.players[3].username}</td>
 
               <td className="col">{this.state.players[3].total_score}</td>
-              
-
             </tr>
             <tr className="rowline">
               <th className="col">5</th>
               <td className="col">{this.state.players[4].username}</td>
 
               <td className="col">{this.state.players[4].total_score}</td>
-              
-
             </tr>
             <tr className="rowline">
               <th className="col">6</th>
               <td className="col">{this.state.players[5].username}</td>
 
               <td className="col">{this.state.players[5].total_score}</td>
-              
-
             </tr>
             <tr className="rowline">
               <th className="col">7</th>
-              <td className="col">{this.state.players[6].username}</td>
+              <td className="col" style={{ color: this.color(6) }}>
+                {this.state.players[6].username}
+              </td>
 
               <td className="col">{this.state.players[6].total_score}</td>
-             
-
             </tr>
             <tr className="rowline">
               <th className="col">8</th>
               <td className="col">{this.state.players[7].username}</td>
 
               <td className="col">{this.state.players[7].total_score}</td>
-              
-
             </tr>
             <tr className="rowline">
               <th className="col">9</th>
               <td className="col">{this.state.players[8].username}</td>
 
               <td className="col">{this.state.players[8].total_score}</td>
-       
-
             </tr>
             <tr className="rowline">
               <th className="col">10</th>
               <td className="col">{this.state.players[9].username}</td>
 
               <td className="col">{this.state.players[9].total_score}</td>
-             
-
             </tr>
           </tbody>
         </table>

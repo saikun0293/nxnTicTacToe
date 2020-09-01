@@ -9,21 +9,22 @@
 }
 
 .tableboard {
-  padding-left: 5px;
+  padding-left: 20px;
   font-weight: 700;
   font-family: "Montserrat";
   margin-top: 2em;
-  width: 30vw;
+  width: 500px;
   height: 80vh;
   border-spacing: 0 8px;
   border-collapse: separate;
   background-size: cover;
   background-color: black;
   color: white;
-  margin-bottom: 8em;
   border-radius: 0 0 10px 10px;
   background-attachment: fixed;
   background-size: cover;
+  padding: 30px;
+  border: 2px solid white;
 }
 .thead {
   height: 40px;
@@ -34,6 +35,8 @@
   display: table-caption;
   background-color: #09d2f5;
   border-radius: 10px 10px 0 0;
+  padding: 10px;
+  font-size: 40px;
 }
 
 tbody th.col,
@@ -41,12 +44,13 @@ tbody th.col1,
 tbody th.col2,
 tbody th.col3 {
   border-radius: 50%;
-  border: 1px solid white;
-  width: 30px;
-  height: 34px;
+  width: 10px;
+  height: 40px;
   padding: 10px;
   text-align: center;
-  font: 25px Arial, sans-serif;
+  font-family: "Montserrat" !important;
+  font-size: 20px;
+  border: 2px solid white;
 }
 tbody th.col1 {
   background: gold;
@@ -60,9 +64,9 @@ tbody th.col3 {
 td.col {
   font-family: "Montserrat";
   text-align: center;
-  color: #ff6464;
   font-weight: 700;
   width: 100px;
+  font-size: 20px;
 }
 
 td:hover {
