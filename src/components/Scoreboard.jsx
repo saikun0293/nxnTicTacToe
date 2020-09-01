@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import "../styles/Scoreboard.css";
-import goldenglobe from "../Images/golden-globe.svg";
-import silvercup from "../Images/silver-cup.svg";
-import bronzecup from "../Images/bronze-trophy.svg";
 import Axios from "axios";
 import APIKEY from "./APIKEY";
 
@@ -86,77 +83,88 @@ class Scoreboard extends Component {
     console.log("render", this.state.players[0]);
     return (
       <div className="leaderboardContainer">
-        <div className="thead">
-          <div className="rowline">LEADERBOARD</div>
-        </div>
         <table className="tableboard" align="center">
+          <thead className="thead">LEADERBOARD</thead>
           <tbody>
-            <tr className="rowline" style={{ borderWidth: "5px" }}>
-              <th className="col1">
-                <img src={goldenglobe} alt="React Logo" width="40vw"></img>
-              </th>
+            <tr className="rowline">
+              <th className="col1">1</th>
 
               <td className="col">{this.state.players[0].username}</td>
+
               <td className="col">{this.state.players[0].total_score}</td>
-              <td style={this.color(0)} className="col"></td>
+              
+
             </tr>
             <tr className="rowline">
-              <th className="col2">
-                <img src={silvercup} alt="React Logo" width="40vw"></img>
-              </th>
+              <th className="col2">2</th>
               <td className="col">{this.state.players[1].username}</td>
+
               <td className="col">{this.state.players[1].total_score}</td>
-              <td style={this.color(1)} className="col"></td>
+
             </tr>
             <tr className="rowline">
-              <th className="col3">
-                <img src={bronzecup} alt="React Logo" width="40vw"></img>
-              </th>
+              <th className="col3">3</th>
               <td className="col">{this.state.players[2].username}</td>
+
               <td className="col">{this.state.players[2].total_score}</td>
-              <td style={this.color(2)} className="col"></td>
+      
+
             </tr>
             <tr className="rowline">
               <th className="col">4</th>
               <td className="col">{this.state.players[3].username}</td>
+
               <td className="col">{this.state.players[3].total_score}</td>
-              <td style={this.color(3)} className="col"></td>
+              
+
             </tr>
             <tr className="rowline">
               <th className="col">5</th>
               <td className="col">{this.state.players[4].username}</td>
+
               <td className="col">{this.state.players[4].total_score}</td>
-              <td style={this.color(4)} className="col"></td>
+              
+
             </tr>
             <tr className="rowline">
               <th className="col">6</th>
               <td className="col">{this.state.players[5].username}</td>
+
               <td className="col">{this.state.players[5].total_score}</td>
-              <td style={this.color(5)} className="col"></td>
+              
+
             </tr>
             <tr className="rowline">
               <th className="col">7</th>
               <td className="col">{this.state.players[6].username}</td>
+
               <td className="col">{this.state.players[6].total_score}</td>
-              <td style={this.color(6)} className="col"></td>
+             
+
             </tr>
             <tr className="rowline">
               <th className="col">8</th>
               <td className="col">{this.state.players[7].username}</td>
+
               <td className="col">{this.state.players[7].total_score}</td>
-              <td style={this.color(7)} className="col"></td>
+              
+
             </tr>
             <tr className="rowline">
               <th className="col">9</th>
               <td className="col">{this.state.players[8].username}</td>
+
               <td className="col">{this.state.players[8].total_score}</td>
-              <td style={this.color(8)} className="col"></td>
+       
+
             </tr>
             <tr className="rowline">
               <th className="col">10</th>
               <td className="col">{this.state.players[9].username}</td>
+
               <td className="col">{this.state.players[9].total_score}</td>
-              <td style={this.color(9)} className="col"></td>
+             
+
             </tr>
           </tbody>
         </table>
