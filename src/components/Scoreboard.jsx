@@ -106,25 +106,33 @@ class Scoreboard extends Component {
             </tr>
             <tr className="rowline">
               <th className="col3">3</th>
-              <td className="col">{this.state.players[2].username}</td>
+              <td className="col" style={this.color(2)}>
+                {this.state.players[2].username}
+              </td>
 
               <td className="col">{this.state.players[2].total_score}</td>
             </tr>
             <tr className="rowline">
               <th className="col">4</th>
-              <td className="col">{this.state.players[3].username}</td>
+              <td className="col" style={this.color(3)}>
+                {this.state.players[3].username}
+              </td>
 
               <td className="col">{this.state.players[3].total_score}</td>
             </tr>
             <tr className="rowline">
               <th className="col">5</th>
-              <td className="col">{this.state.players[4].username}</td>
+              <td className="col" style={this.color(4)}>
+                {this.state.players[4].username}
+              </td>
 
               <td className="col">{this.state.players[4].total_score}</td>
             </tr>
             <tr className="rowline">
               <th className="col">6</th>
-              <td className="col">{this.state.players[5].username}</td>
+              <td className="col" style={this.color(5)}>
+                {this.state.players[5].username}
+              </td>
 
               <td className="col">{this.state.players[5].total_score}</td>
             </tr>
@@ -138,19 +146,25 @@ class Scoreboard extends Component {
             </tr>
             <tr className="rowline">
               <th className="col">8</th>
-              <td className="col">{this.state.players[7].username}</td>
+              <td className="col" style={this.color(7)}>
+                {this.state.players[7].username}
+              </td>
 
               <td className="col">{this.state.players[7].total_score}</td>
             </tr>
             <tr className="rowline">
               <th className="col">9</th>
-              <td className="col">{this.state.players[8].username}</td>
+              <td className="col" style={this.color(8)}>
+                {this.state.players[8].username}
+              </td>
 
               <td className="col">{this.state.players[8].total_score}</td>
             </tr>
             <tr className="rowline">
               <th className="col">10</th>
-              <td className="col">{this.state.players[9].username}</td>
+              <td className="col" style={this.color(9)}>
+                {this.state.players[9].username}
+              </td>
 
               <td className="col">{this.state.players[9].total_score}</td>
             </tr>
