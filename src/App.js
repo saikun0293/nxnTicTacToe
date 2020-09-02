@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AuthenticationPage from "./components/Authentication";
 import GamePage from "./components/Game";
 import Scoreboard from "./components/Scoreboard";
