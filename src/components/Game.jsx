@@ -6,7 +6,7 @@ import "../styles/Game.css";
 import APIKEY from "./APIKEY";
 
 const api = Axios.create({ baseURL: "https://crudcrud.com/api/" + APIKEY });
-
+// let data;
 class GamePage extends Component {
   state = {
     dimensions: 3,
@@ -18,6 +18,8 @@ class GamePage extends Component {
     endGame: false,
     redScore: 0,
     blueScore: 0,
+    red_id: "",
+    blue_id: "",
   };
 
   handleStatus = () => {
@@ -32,7 +34,11 @@ class GamePage extends Component {
   };
 
   componentDidMount() {
-    const { red_id, blue_id } = this.props.location.state;
+    const red_id = this.state.red_id;
+    const blue_id = this.state.blue_id;
+
+    console.log(red_id, blue_id);
+
     //Updating scores
     api.get("/red/" + red_id).then((res) => {
       this.setState({ redScore: res.data.total_score });
@@ -44,23 +50,35 @@ class GamePage extends Component {
 
   constructor(props) {
     super(props);
-    const { matrixSize, red_username, blue_username } = props.location.state;
-    this.state.dimensions = matrixSize;
-    this.state.redPlayer = red_username;
-    this.state.bluePlayer = blue_username;
+
+    let playerData;
+    if (props.location.state) {
+      localStorage.setItem("routeState", JSON.stringify(props.location.state));
+      playerData = props.location.state;
+    } else {
+      playerData = localStorage.getItem("routeState");
+      if (playerData) playerData = JSON.parse(playerData);
+    }
+
+    console.log(props);
+    this.state.dimensions = playerData.matrixSize;
+    this.state.redPlayer = playerData.red_username;
+    this.state.bluePlayer = playerData.blue_username;
+    this.state.red_id = playerData.red_id;
+    this.state.blue_id = playerData.blue_id;
     //random function
     const rand = Math.floor((Math.random() * 10) % 2);
     if (rand === 1) {
-      this.state.status = "It's " + blue_username + "'s turn";
+      this.state.status = "It's " + playerData.blue_username + "'s turn";
       this.state.turn = "O";
     } else if (rand === 0) {
-      this.state.status = "It's " + red_username + "'s turn";
+      this.state.status = "It's " + playerData.red_username + "'s turn";
       this.state.turn = "X";
     }
   }
 
   updateWinnerScore = (winner) => {
-    const { red_id, blue_id } = this.props.location.state;
+    const { red_id, blue_id } = this.state;
     api.get("/red/" + red_id).then((res) => {
       const redData = res.data;
       delete redData._id;
@@ -173,3 +191,17 @@ class GamePage extends Component {
 }
 
 export default GamePage;
+
+// console.log(props.location.state);
+// if (props.location.state) {
+//   playerData = props.location.state;
+//   data = playerData;
+//   console.log("inside props.location.state");
+//   console.log("playerData", playerData);
+//   console.log("data", data);
+// } else {
+//   playerData = data;
+//   console.log("Not inside props.location.state");
+//   console.log("playerData", playerData);
+//   console.log("data", data);
+// }

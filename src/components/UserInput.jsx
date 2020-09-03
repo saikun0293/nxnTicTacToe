@@ -2,6 +2,34 @@ import React, { Component } from "react";
 import "../styles/UserInput.css";
 
 class UserInput extends Component {
+  state = {
+    red_verified: false,
+    blue_verified: false,
+  };
+
+  componentWillReceiveProps(props) {
+    const { red_verified, blue_verified } = props.onVerified;
+    this.setState({ red_verified, blue_verified });
+  }
+
+  btn = (status) => {
+    let style;
+    if (status === true) {
+      style = {
+        color: "white",
+        visibility: "visible",
+        marginLeft: "5px",
+      };
+    } else {
+      style = {
+        color: "white",
+        visibility: "hidden",
+        marginLeft: "5px",
+      };
+    }
+    return style;
+  };
+
   render() {
     return (
       <div>
@@ -37,6 +65,9 @@ class UserInput extends Component {
             />
             <button className="verify-btn" type="submit">
               Verify
+              <span style={this.btn(this.state.blue_verified)}>
+                <i class="fas fa-check-circle"></i>
+              </span>
             </button>
           </form>
           <form
@@ -57,6 +88,9 @@ class UserInput extends Component {
             />
             <button className="verify-btn" type="submit">
               Verify
+              <span style={this.btn(this.state.red_verified)}>
+                <i class="fas fa-check-circle"></i>
+              </span>
             </button>
           </form>
         </div>

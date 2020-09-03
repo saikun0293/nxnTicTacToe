@@ -85,91 +85,95 @@ class Scoreboard extends Component {
     return (
       <div className="leaderboardContainer">
         <table className="tableboard" align="center">
-          <thead className="thead">LEADERBOARD</thead>
+          <thead className="thead">Leader Board</thead>
           <tbody>
             <tr className="rowline">
-              <th className="col1">1</th>
+              <th className="number-col col1">1</th>
 
               <td className="col" style={this.color(0)}>
                 {this.state.players[0].username}
               </td>
 
-              <td className="col">{this.state.players[0].total_score}</td>
+              <td className="score-col">{this.state.players[0].total_score}</td>
             </tr>
             <tr className="rowline">
-              <th className="col2">2</th>
+              <th className="number-col col2">2</th>
               <td className="col" style={this.color(1)}>
                 {this.state.players[1].username}
               </td>
 
-              <td className="col">{this.state.players[1].total_score}</td>
+              <td className="score-col">{this.state.players[1].total_score}</td>
             </tr>
             <tr className="rowline">
-              <th className="col3">3</th>
+              <th className="number-col col3">3</th>
               <td className="col" style={this.color(2)}>
                 {this.state.players[2].username}
               </td>
 
-              <td className="col">{this.state.players[2].total_score}</td>
+              <td className="score-col">{this.state.players[2].total_score}</td>
             </tr>
             <tr className="rowline">
-              <th className="col">4</th>
+              <th className="number-col">4</th>
               <td className="col" style={this.color(3)}>
                 {this.state.players[3].username}
               </td>
 
-              <td className="col">{this.state.players[3].total_score}</td>
+              <td className="score-col">{this.state.players[3].total_score}</td>
             </tr>
             <tr className="rowline">
-              <th className="col">5</th>
+              <th className="number-col">5</th>
               <td className="col" style={this.color(4)}>
                 {this.state.players[4].username}
               </td>
 
-              <td className="col">{this.state.players[4].total_score}</td>
+              <td className="score-col">{this.state.players[4].total_score}</td>
             </tr>
             <tr className="rowline">
-              <th className="col">6</th>
+              <th className="number-col">6</th>
               <td className="col" style={this.color(5)}>
                 {this.state.players[5].username}
               </td>
 
-              <td className="col">{this.state.players[5].total_score}</td>
+              <td className="score-col">{this.state.players[5].total_score}</td>
             </tr>
             <tr className="rowline">
-              <th className="col">7</th>
-              <td className="col" style={{ color: this.color(6) }}>
+              <th className="number-col">7</th>
+              <td className="col" style={this.color(6)}>
                 {this.state.players[6].username}
               </td>
 
-              <td className="col">{this.state.players[6].total_score}</td>
+              <td className="score-col">{this.state.players[6].total_score}</td>
             </tr>
             <tr className="rowline">
-              <th className="col">8</th>
+              <th className="number-col">8</th>
               <td className="col" style={this.color(7)}>
                 {this.state.players[7].username}
               </td>
 
-              <td className="col">{this.state.players[7].total_score}</td>
+              <td className="score-col">{this.state.players[7].total_score}</td>
             </tr>
             <tr className="rowline">
-              <th className="col">9</th>
+              <th className="number-col">9</th>
               <td className="col" style={this.color(8)}>
                 {this.state.players[8].username}
               </td>
 
-              <td className="col">{this.state.players[8].total_score}</td>
+              <td className="score-col">{this.state.players[8].total_score}</td>
             </tr>
             <tr className="rowline">
-              <th className="col">10</th>
+              <th className="number-col">10</th>
               <td className="col" style={this.color(9)}>
                 {this.state.players[9].username}
               </td>
 
-              <td className="col">{this.state.players[9].total_score}</td>
+              <td className="score-col">{this.state.players[9].total_score}</td>
             </tr>
           </tbody>
         </table>
+        <div className="wave wave1"></div>
+        <div className="wave wave2"></div>
+        <div className="wave wave3"></div>
+        <div className="wave wave4"></div>
       </div>
     );
   }

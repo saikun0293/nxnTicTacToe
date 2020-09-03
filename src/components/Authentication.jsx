@@ -53,7 +53,6 @@ class AuthenticationPage extends Component {
       });
       if (found === true) {
         this.setState({ [team + "_verified"]: true });
-        window.alert(team + " team authentication successful!");
       } else {
         window.alert(team + " team authentication failed!");
       }
@@ -65,15 +64,20 @@ class AuthenticationPage extends Component {
   render() {
     return (
       <div className="authBody">
-
-        <UserInput onInput={this.handleInput} onSubmit={this.handleSubmit} />
+        <UserInput
+          onVerified={{
+            red_verified: this.state.red_verified,
+            blue_verified: this.state.blue_verified,
+          }}
+          onInput={this.handleInput}
+          onSubmit={this.handleSubmit}
+        />
         <div className="register-section">
           <Link className="auth-register" to="/register">
             Register
           </Link>
         </div>
         <Matrixsize presentState={this.state} />
-
       </div>
     );
   }
