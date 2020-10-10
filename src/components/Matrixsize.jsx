@@ -1,32 +1,35 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { updateDimension } from "../redux";
 import "../styles/Matrixsize.css";
 
 class Matrixsize extends Component {
   state = {
-    matrixSize: 3,
     disabled: true,
-    blue_username: "",
-    red_username: "",
-    red_id: "",
-    blue_id: "",
+    matrixSize: 3,
+  };
+
+  componentDidUpdate = () => {
+    console.log(this.props);
+    if (
+      this.props.redVerified === true &&
+      this.props.blueVerified === true &&
+      this.state.disabled === true
+    ) {
+      this.setState({ disabled: false });
+    }
+  };
+
+  handleSubmit = () => {
+    const matrixSize = Number(this.state.matrixSize);
+    this.props.changeDimension(matrixSize);
   };
 
   handleUpdate = (e) => {
     const matrixSize = e.target.value;
     this.setState({ matrixSize });
   };
-
-  componentWillReceiveProps(props) {
-    const {
-      blue_username,
-      red_username,
-      disabled,
-      red_id,
-      blue_id,
-    } = props.presentState;
-    this.setState({ disabled, red_username, blue_username, red_id, blue_id });
-  }
 
   render() {
     return (
@@ -41,12 +44,8 @@ class Matrixsize extends Component {
             onChange={this.handleUpdate}
           />
           <Link
-            to={{
-              pathname: "/game",
-              state: {
-                ...this.state,
-              },
-            }}
+            to="/game"
+            onClick={this.handleSubmit}
             className="submit"
             style={{
               pointerEvents: this.state.disabled === true ? "none" : "auto",
@@ -60,4 +59,17 @@ class Matrixsize extends Component {
   }
 }
 
-export default Matrixsize;
+const mapStateToProps = (state) => {
+  return {
+    redVerified: state.player.red.verified,
+    blueVerified: state.player.blue.verified,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeDimension: (d) => dispatch(updateDimension(d)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Matrixsize);

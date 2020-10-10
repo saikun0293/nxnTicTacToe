@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Square from "./Square";
 import "../styles/tttstyle.css";
+import {connect} from "react-redux";
 
 class TicTacToe extends Component {
   state = {
@@ -26,7 +27,7 @@ class TicTacToe extends Component {
 
   constructor(props) {
     super(props);
-    this.state.dimensions = Number(this.props.dimensions);
+    this.state.dimensions = Number(this.props.game.dimensions);
     let d = this.state.dimensions;
     for (let i = 0; i < d; i++) {
       let val = [];
@@ -38,6 +39,16 @@ class TicTacToe extends Component {
     }
     this.state.turn = this.props.turn;
   }
+
+  componentDidUpdate = () => {
+    if (this.props.reset === true) {
+      this.setState({
+        coord: [],
+        endGame: false,
+      });
+      this.props.onReset();
+    }
+  };
 
   handleWinner = () => {
     let { values, dimensions } = this.state;
@@ -128,5 +139,9 @@ class TicTacToe extends Component {
     );
   }
 }
-
-export default TicTacToe;
+const mapStateToProps = (state) => {
+  return {
+    game: state.game,
+  };
+};
+export default connect(mapStateToProps,null)(TicTacToe);

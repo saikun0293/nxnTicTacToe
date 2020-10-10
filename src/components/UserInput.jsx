@@ -1,31 +1,67 @@
 import React, { Component } from "react";
 import "../styles/UserInput.css";
+import Axios from "axios";
+import APIKEY from "./APIKEY";
+import { connect } from "react-redux";
+import { redAuthenticated, blueAuthenticated } from "../redux";
+import { Link } from "react-router-dom";
+
+const api = Axios.create({
+  baseURL: "https://crudcrud.com/api/" + APIKEY,
+});
 
 class UserInput extends Component {
   state = {
-    red_verified: false,
-    blue_verified: false,
+    //red
+    redUsername: "",
+    redPassword: "",
+    redVerified: false,
+    //blue
+    blueUsername: "",
+    bluePassword: "",
+    blueVerified: false,
   };
 
-  componentWillReceiveProps(props) {
-    const { red_verified, blue_verified } = props.onVerified;
-    this.setState({ red_verified, blue_verified });
-  }
+  handleSubmit = (event, team) => {
+    const username = this.state[team + "Username"],
+      password = this.state[team + "Password"];
+
+    api.get("/" + team).then((res) => {
+      let found = false;
+      const players = res.data;
+      players.forEach((player) => {
+        if (player.username === username && player.password === password) {
+          found = true;
+          if (team === "red") {
+            this.props.authenticateRed(player);
+          } else if (team === "blue") {
+            this.props.authenticateBlue(player);
+          }
+          this.setState({ [team + "Verified"]: true });
+        }
+      });
+      if (!found) {
+        window.alert(team + " team authentication failed!");
+      }
+    });
+    event.preventDefault();
+  };
+
+  handleInput = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
 
   btn = (status) => {
     let style;
+    style = {
+      color: "white",
+      marginLeft: "5px",
+    };
     if (status === true) {
-      style = {
-        color: "white",
-        visibility: "visible",
-        marginLeft: "5px",
-      };
+      style.visibility = "visible";
     } else {
-      style = {
-        color: "white",
-        visibility: "hidden",
-        marginLeft: "5px",
-      };
+      style.visibility = "hidden";
     }
     return style;
   };
@@ -35,6 +71,12 @@ class UserInput extends Component {
       <div>
         <section className="ui-wave">
           <div className="title">Marine Games</div>
+          <div className="scoreboard">
+            <Link to="/scoreboard" className="scoretitle">
+              Scoreboard
+            </Link>
+          </div>
+          
           <div className="flex-row1">
             <i style={{ color: "white" }} className="fab fa-joomla fa-9x"></i>
             <i style={{ color: "white" }} className="fab fa-slack fa-9x"></i>
@@ -49,47 +91,47 @@ class UserInput extends Component {
         <div className="userinput-field">
           <form
             className="blueteam-ui"
-            onSubmit={(e) => this.props.onSubmit(e, "blue")}
+            onSubmit={(e) => this.handleSubmit(e, "blue")}
           >
             <label htmlFor="username">Username</label>
             <input
-              name="blue_username"
+              name="blueUsername"
               type="text"
-              onChange={(e) => this.props.onInput(e)}
+              onChange={(e) => this.handleInput(e)}
             />
             <label htmlFor="password">Password</label>
             <input
-              name="blue_password"
+              name="bluePassword"
               type="password"
-              onChange={(e) => this.props.onInput(e)}
+              onChange={(e) => this.handleInput(e)}
             />
             <button className="verify-btn" type="submit">
               Verify
-              <span style={this.btn(this.state.blue_verified)}>
-                <i class="fas fa-check-circle"></i>
+              <span style={this.btn(this.state.blueVerified)}>
+                <i className="fas fa-check-circle"></i>
               </span>
             </button>
           </form>
           <form
             className="redteam-ui"
-            onSubmit={(e) => this.props.onSubmit(e, "red")}
+            onSubmit={(e) => this.handleSubmit(e, "red")}
           >
             <label htmlFor="username">Username</label>
             <input
-              name="red_username"
+              name="redUsername"
               type="text"
-              onChange={(e) => this.props.onInput(e)}
+              onChange={(e) => this.handleInput(e)}
             />
             <label htmlFor="password">Password</label>
             <input
-              name="red_password"
+              name="redPassword"
               type="password"
-              onChange={(e) => this.props.onInput(e)}
+              onChange={(e) => this.handleInput(e)}
             />
             <button className="verify-btn" type="submit">
               Verify
-              <span style={this.btn(this.state.red_verified)}>
-                <i class="fas fa-check-circle"></i>
+              <span style={this.btn(this.state.redVerified)}>
+                <i className="fas fa-check-circle"></i>
               </span>
             </button>
           </form>
@@ -99,4 +141,12 @@ class UserInput extends Component {
   }
 }
 
-export default UserInput;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    authenticateRed: (p) => dispatch(redAuthenticated(p)),
+    authenticateBlue: (p) => dispatch(blueAuthenticated(p)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(UserInput);
+//use null if we don't want to use mapStateToProps

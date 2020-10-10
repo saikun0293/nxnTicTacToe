@@ -1,3 +1,3 @@
-let apiKey = "736293f7a97844908ed96bcf1da910c7";
+let apiKey = "ba25a450f77b4dc78136b894278ee17f";
 
 export default apiKey;

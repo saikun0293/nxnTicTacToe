@@ -53,6 +53,11 @@
   justify-content: center;
 }
 
+.verify-btn:hover {
+  color: black;
+  background-color: #eeeeee;
+}
+
 .flex-row1 {
   margin-top: 50px;
   display: flex;

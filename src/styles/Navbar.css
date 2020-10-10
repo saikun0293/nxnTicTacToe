@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap");
 
 :root {
+  --red: #ff6464;
   --blue: #00e0ff;
   --black: #222831;
 }
@@ -28,11 +29,14 @@
 }
 
 .scoreboard {
-  background-color: var(--blue);
-  color: black;
+  background-color: white;
+  color: var(--red);
   height: 30px;
   margin-right: 20px;
   border-radius: 20px;
+  position: absolute;
+  right: 10px;
+  top: 20px;
   display: flex;
   align-items: center;
 }

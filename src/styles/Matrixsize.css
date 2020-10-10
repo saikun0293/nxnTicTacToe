@@ -13,20 +13,6 @@
   justify-content: space-between;
 }
 
-/* .submit {
-  background-color: black;
-  color: white;
-  font-family: "Montserrat" !important;
-  font-size: 15px;
-  border-radius: 20px;
-  border-color: black;
-  outline: none;
-  outline-style: none !important;
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  margin-left: 6em;
-} */
 .submit {
   background-color: black;
   font-family: "Montserrat";
