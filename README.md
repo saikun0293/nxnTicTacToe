@@ -2,6 +2,10 @@
 
 An nxn Tic Tac Toe game built using React.js ⚛ and Firebase 🔥
 
+### Link
+
+https://saikun0293.github.io/nxnTicTacToe
+
 ### Packages
 
 - React Router 📶
