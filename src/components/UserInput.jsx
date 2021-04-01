@@ -1,50 +1,61 @@
 import React, { Component } from "react";
 import "../styles/UserInput.css";
-import Axios from "axios";
-import APIKEY from "./APIKEY";
+import firebase from "firebase/app";
 import { connect } from "react-redux";
 import { redAuthenticated, blueAuthenticated } from "../redux";
 import { Link } from "react-router-dom";
 
-const api = Axios.create({
-  baseURL: "https://crudcrud.com/api/" + APIKEY,
-});
-
 class UserInput extends Component {
   state = {
     //red
-    redUsername: "",
+    redEmail: "",
     redPassword: "",
     redVerified: false,
     //blue
-    blueUsername: "",
+    blueEmail: "",
     bluePassword: "",
     blueVerified: false,
   };
 
-  handleSubmit = (event, team) => {
-    const username = this.state[team + "Username"],
+  handleSubmit = async (event, team) => {
+    event.preventDefault();
+
+    const email = this.state[team + "Email"],
       password = this.state[team + "Password"];
 
-    api.get("/" + team).then((res) => {
-      let found = false;
-      const players = res.data;
-      players.forEach((player) => {
-        if (player.username === username && player.password === password) {
-          found = true;
-          if (team === "red") {
-            this.props.authenticateRed(player);
-          } else if (team === "blue") {
-            this.props.authenticateBlue(player);
-          }
-          this.setState({ [team + "Verified"]: true });
-        }
-      });
-      if (!found) {
-        window.alert(team + " team authentication failed!");
+    try {
+      const authUser = await firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password);
+
+      const userRef = await firebase
+        .firestore()
+        .collection(team)
+        .doc(email)
+        .get();
+
+      const userData = userRef.data();
+
+      const player = {
+        username: userData.username,
+        email: authUser.user.email,
+        total_score: userData.total_score,
+        total_matches: userData.total_matches,
+      };
+
+      if (team === "red") {
+        this.props.authenticateRed(player);
+      } else if (team === "blue") {
+        this.props.authenticateBlue(player);
       }
-    });
-    event.preventDefault();
+      this.setState({ [team + "Verified"]: true });
+
+      console.log(team, this.props.player);
+
+      window.alert(team + " user verified!");
+    } catch (error) {
+      window.alert(error.message);
+    }
   };
 
   handleInput = (event) => {
@@ -76,7 +87,7 @@ class UserInput extends Component {
               Scoreboard
             </Link>
           </div>
-          
+
           <div className="flex-row1">
             <i style={{ color: "white" }} className="fab fa-joomla fa-9x"></i>
             <i style={{ color: "white" }} className="fab fa-slack fa-9x"></i>
@@ -93,10 +104,10 @@ class UserInput extends Component {
             className="blueteam-ui"
             onSubmit={(e) => this.handleSubmit(e, "blue")}
           >
-            <label htmlFor="username">Username</label>
+            <label htmlFor="blueEmail">Username</label>
             <input
-              name="blueUsername"
-              type="text"
+              name="blueEmail"
+              type="email"
               onChange={(e) => this.handleInput(e)}
             />
             <label htmlFor="password">Password</label>
@@ -116,10 +127,10 @@ class UserInput extends Component {
             className="redteam-ui"
             onSubmit={(e) => this.handleSubmit(e, "red")}
           >
-            <label htmlFor="username">Username</label>
+            <label htmlFor="redEmail">Username</label>
             <input
-              name="redUsername"
-              type="text"
+              name="redEmail"
+              type="email"
               onChange={(e) => this.handleInput(e)}
             />
             <label htmlFor="password">Password</label>

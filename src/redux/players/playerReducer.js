@@ -6,16 +6,14 @@ import {
 
 const player = {
   red: {
-    id: "",
     username: "",
-    password: "",
+    email: "",
     score: 0,
     verified: false,
   },
   blue: {
-    id: "",
     username: "",
-    password: "",
+    email: "",
     score: 0,
     verified: false,
   },
@@ -41,7 +39,7 @@ const playerReducer = (state = player, action) => {
           ...state,
           red: {
             ...state.red,
-            total_score: state.red.total_score+1,
+            total_score: state.red.total_score + 1,
           },
         };
       } else if (team === "blue") {
@@ -49,7 +47,7 @@ const playerReducer = (state = player, action) => {
           ...state,
           blue: {
             ...state.blue,
-            total_score: state.blue.total_score+1,
+            total_score: state.blue.total_score + 1,
           },
         };
       }

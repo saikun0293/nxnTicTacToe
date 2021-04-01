@@ -1,14 +1,16 @@
 import React, { Component } from "react";
+import firebase from "firebase/app";
 import Navbar from "./Navbar";
-import Axios from "axios";
 import TicTacToe from "./TicTacToe";
 import "../styles/Game.css";
-import APIKEY from "./APIKEY";
 import { connect } from "react-redux";
-import { updateTurn, updateRound, endGame, updateScore, resetRound } from "../redux";
-
-const api = Axios.create({ baseURL: "https://crudcrud.com/api/" + APIKEY });
-// let data;
+import {
+  updateTurn,
+  updateRound,
+  endGame,
+  updateScore,
+  resetRound,
+} from "../redux";
 class GamePage extends Component {
   state = {
     round: 1,
@@ -35,7 +37,7 @@ class GamePage extends Component {
   constructor(props) {
     super(props);
     console.log(this.props);
-    const { red, blue} = this.props;
+    const { red, blue } = this.props;
     this.state.redScore = red.total_score;
     this.state.blueScore = blue.total_score;
 
@@ -55,28 +57,33 @@ class GamePage extends Component {
     window.location.reload();
   };
 
-  handleEndGame = () => {
+  handleEndGame = async () => {
     this.props.resetRound();
-    const{red,blue}=this.props;
-    api.get("/red/"+red._id).then((res)=>{
-      const redData=res.data;
-      delete redData._id;
-      redData.total_score=red.total_score;
-      console.log("red",redData);
-      api.put("/red/"+red._id,redData).then((res)=>{
-        console.log(res);
-      })
-    })
-    api.get("/blue/"+blue._id).then((res)=>{
-      const blueData=res.data;
-      delete blueData._id;
-      blueData.total_score=blue.total_score;
-      console.log("blue",blueData);
-      api.put("/blue/"+blue._id,blueData).then((res)=>{
-        console.log(res);
-      })
-    })
-    this.props.history.push("/");
+    const { red, blue, game } = this.props;
+
+    try {
+      const redRef = await firebase
+        .firestore()
+        .collection("red")
+        .doc(red.email);
+      await redRef.update({
+        total_score: red.total_score,
+        total_matches: firebase.firestore.FieldValue.increment(game.round),
+      });
+
+      const blueRef = await firebase
+        .firestore()
+        .collection("blue")
+        .doc(blue.email);
+      await blueRef.update({
+        total_score: blue.total_score,
+        total_matches: firebase.firestore.FieldValue.increment(game.round),
+      });
+
+      this.props.history.push("/");
+    } catch (error) {
+      window.alert(error.message);
+    }
   };
 
   handleWinner = (winner) => {
@@ -124,12 +131,16 @@ class GamePage extends Component {
             <i className="fab fa-slack fa-5x"></i>
             <div className="redscore" width="50vw" height="50vh">
               <div className="player-name">{this.props.red.username}</div>
-              <div className="red-player-score">{this.props.red.total_score}</div>
+              <div className="red-player-score">
+                {this.props.red.total_score}
+              </div>
             </div>
           </div>
           <div className="blue-col">
             <div className="bluescore" width="50vw" height="50vh">
-              <div className="blue-player-score">{this.props.blue.total_score}</div>
+              <div className="blue-player-score">
+                {this.props.blue.total_score}
+              </div>
               <div className="player-name">{this.props.blue.username}</div>
             </div>
             <i className="fab fa-joomla fa-5x"></i>
@@ -176,7 +187,7 @@ const mapDispatchToProps = (dispatch) => {
     updateRound: (r) => dispatch(updateRound(r)),
     updateScore: (t) => dispatch(updateScore(t)),
     endGame: () => dispatch(endGame()),
-    resetRound: ()=>dispatch(resetRound()),
+    resetRound: () => dispatch(resetRound()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(GamePage);

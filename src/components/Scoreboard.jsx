@@ -1,175 +1,71 @@
 import React, { Component } from "react";
+import firebase from "firebase/app";
+import PlayerScore from "./PlayerScore";
 import "../styles/Scoreboard.css";
-import Axios from "axios";
-import APIKEY from "./APIKEY";
-
-const api = Axios.create({ baseURL: "https://crudcrud.com/api/" + APIKEY });
 class Scoreboard extends Component {
   state = {
-    redPlayers: [],
-    bluePlayers: [],
     players: [],
   };
 
-  constructor() {
-    super();
-    for (var i = this.state.players.length; i < 10; i++) {
-      this.state.players.push({
-        username: "-",
-        password: "-",
-        total_score: 0,
-        team: "-",
-        total_matches: 0,
-        scores: [],
+  loadPlayers = async () => {
+    let players = [];
+
+    await firebase
+      .firestore()
+      .collection("red")
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          let player = { ...doc.data(), team: "red", color: "#ff6464" };
+          players.push(player);
+        });
       });
-    }
-  }
 
-  color = (index) => {
-    const style = {
-      color: "",
-      fontSize: "30px",
-    };
-    if (this.state.players[index].team === "red") {
-      style.color = "#ff6464";
-    } else if (this.state.players[index].team === "blue") {
-      style.color = "#00e0ff";
-    } else {
-      style.color = "#d6e0f0";
+    await firebase
+      .firestore()
+      .collection("blue")
+      .get()
+      .then((snapshot) => {
+        snapshot.forEach((doc) => {
+          let player = { ...doc.data(), team: "blue", color: "#00e0ff" };
+          players.push(player);
+        });
+      });
+
+    if (players.length < 10) {
+      for (var i = players.length; i < 10; i++) {
+        players.push({
+          email: "-",
+          username: "-",
+          total_score: 0,
+          team: "-",
+          total_matches: 0,
+          color: "#d6e0f0",
+        });
+      }
     }
 
-    return style;
+    players.sort((a, b) => parseInt(b.total_score) - parseInt(a.total_score));
+
+    console.log(players);
+    this.setState({ players: players });
   };
 
   componentDidMount() {
-    api.get("/red").then((res) => {
-      this.setState({ redPlayers: res.data }, () => {
-        console.log("redplayers added!");
-      });
-    });
-    api.get("/blue").then((res) => {
-      this.setState({ bluePlayers: res.data }, () => {
-        console.log("blueplayers added!");
-      });
-    });
-  }
-
-  componentDidUpdate() {
-    const { redPlayers, bluePlayers, players } = this.state;
-    if (
-      redPlayers.length !== 0 &&
-      bluePlayers.length !== 0 &&
-      players[0].username === "-"
-    ) {
-      const players = [...redPlayers, ...bluePlayers];
-
-      players.sort((p1, p2) => p2.total_score - p1.total_score);
-      if (players.length < 10) {
-        for (var i = players.length; i < 10; i++) {
-          players.push({
-            username: "-",
-            password: "-",
-            total_score: 0,
-            team: "-",
-            total_matches: 0,
-            scores: [],
-          });
-        }
-      }
-      this.setState({ players });
-    }
+    this.loadPlayers();
   }
 
   render() {
-    console.log("render", this.state.players);
     return (
       <div className="leaderboardContainer">
-        <table className="tableboard" align="center">
-          <thead className="thead">Leader Board</thead>
-          <tbody>
-            <tr className="rowline">
-              <th className="number-col col1">1</th>
-
-              <td className="col" style={this.color(0)}>
-                {this.state.players[0].username}
-              </td>
-
-              <td className="score-col">{this.state.players[0].total_score}</td>
-            </tr>
-            <tr className="rowline">
-              <th className="number-col col2">2</th>
-              <td className="col" style={this.color(1)}>
-                {this.state.players[1].username}
-              </td>
-
-              <td className="score-col">{this.state.players[1].total_score}</td>
-            </tr>
-            <tr className="rowline">
-              <th className="number-col col3">3</th>
-              <td className="col" style={this.color(2)}>
-                {this.state.players[2].username}
-              </td>
-
-              <td className="score-col">{this.state.players[2].total_score}</td>
-            </tr>
-            <tr className="rowline">
-              <th className="number-col">4</th>
-              <td className="col" style={this.color(3)}>
-                {this.state.players[3].username}
-              </td>
-
-              <td className="score-col">{this.state.players[3].total_score}</td>
-            </tr>
-            <tr className="rowline">
-              <th className="number-col">5</th>
-              <td className="col" style={this.color(4)}>
-                {this.state.players[4].username}
-              </td>
-
-              <td className="score-col">{this.state.players[4].total_score}</td>
-            </tr>
-            <tr className="rowline">
-              <th className="number-col">6</th>
-              <td className="col" style={this.color(5)}>
-                {this.state.players[5].username}
-              </td>
-
-              <td className="score-col">{this.state.players[5].total_score}</td>
-            </tr>
-            <tr className="rowline">
-              <th className="number-col">7</th>
-              <td className="col" style={this.color(6)}>
-                {this.state.players[6].username}
-              </td>
-
-              <td className="score-col">{this.state.players[6].total_score}</td>
-            </tr>
-            <tr className="rowline">
-              <th className="number-col">8</th>
-              <td className="col" style={this.color(7)}>
-                {this.state.players[7].username}
-              </td>
-
-              <td className="score-col">{this.state.players[7].total_score}</td>
-            </tr>
-            <tr className="rowline">
-              <th className="number-col">9</th>
-              <td className="col" style={this.color(8)}>
-                {this.state.players[8].username}
-              </td>
-
-              <td className="score-col">{this.state.players[8].total_score}</td>
-            </tr>
-            <tr className="rowline">
-              <th className="number-col">10</th>
-              <td className="col" style={this.color(9)}>
-                {this.state.players[9].username}
-              </td>
-
-              <td className="score-col">{this.state.players[9].total_score}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="tableboard" align="center">
+          <div className="score-board-title">Leader Board</div>
+          <div>
+            {this.state.players.map((player, index) => {
+              return <PlayerScore key={index} no={index} data={player} />;
+            })}
+          </div>
+        </div>
         <div className="wave wave1"></div>
         <div className="wave wave2"></div>
         <div className="wave wave3"></div>

@@ -1,12 +1,10 @@
 import React, { Component } from "react";
+import firebase from "firebase/app";
 import "../styles/Register.css";
-import Axios from "axios";
-import APIKEY from "./APIKEY";
-
-const api = Axios.create({ baseURL: "https://crudcrud.com/api/" + APIKEY });
 
 class Register extends Component {
   state = {
+    email: "",
     username: "",
     password: "",
     team: "",
@@ -19,44 +17,36 @@ class Register extends Component {
     this.setState({ [name]: value });
   };
 
-  handleRegister = (event) => {
-    const { username, password, team, confirmPassword } = this.state;
-    const data = {
-      username: username,
-      password: password,
-      team: team,
-      scores: [],
-      total_matches: 0,
-      total_score: 0,
-    };
-
-    api.get("/" + team).then((res) => {
-      let found = false;
-      res.data.forEach((player) => {
-        console.log(player);
-        if (player.username === username) {
-          found = true;
-        }
-      });
-      if (found === true) {
-        this.setState({ status: "Username already exists!" });
-      } else {
-        if (password === confirmPassword) {
-          api
-            .post("/" + team, data)
-            .then((res) => {
-              this.props.history.push("/");
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-        } else {
-          this.setState({ status: "Passwords don't match!" });
-        }
-      }
-    });
-
+  handleRegister = async (event) => {
     event.preventDefault();
+    const { username, email, password, team, confirmPassword } = this.state;
+
+    if (password === confirmPassword) {
+      try {
+        const auth = await firebase
+          .auth()
+          .createUserWithEmailAndPassword(email, password);
+        console.log("Auth is done!");
+        const messageRef = await firebase
+          .firestore()
+          .collection(team)
+          .doc(auth.user.email);
+
+        console.log("Adding message");
+        await messageRef.set({
+          username: username,
+          email: auth.user.email,
+          total_matches: 0,
+          total_score: 0,
+        });
+
+        this.props.history.push("/");
+      } catch (error) {
+        window.alert(error.message);
+      }
+    } else {
+      this.setState({ status: "Password's don't match" });
+    }
   };
 
   render() {
@@ -69,18 +59,28 @@ class Register extends Component {
           <input
             name="username"
             type="text"
+            autoComplete="off"
+            onChange={(e) => this.handleInput(e)}
+          />
+          <label htmlFor="email">Email</label>
+          <input
+            name="email"
+            type="email"
+            autoComplete="off"
             onChange={(e) => this.handleInput(e)}
           />
           <label htmlFor="password">Password</label>
           <input
             name="password"
             type="password"
+            autoComplete="off"
             onChange={(e) => this.handleInput(e)}
           />
           <label htmlFor="confirmPassword">Confirm Password</label>
           <input
             name="confirmPassword"
             type="password"
+            autoComplete="off"
             onChange={(e) => this.handleInput(e)}
           />
           <div className="team-btns">
